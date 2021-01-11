@@ -1,0 +1,200 @@
+@import "./variables";
+// table
+.__cyan_table_wrap {
+  width: 100%;
+  min-height: 363px;
+
+  .__cyan_table {
+    // 无数据
+    .el-table__empty-block {
+      width: 100% !important;
+    }
+
+    &.__editable {
+      .el-input {
+        width: 60%;
+        .el-input__inner {
+          height: 24px;
+          line-height: 24px;
+        }
+      }
+    }
+    // 行
+    .__cyan_table_row {
+      // 单元格
+      .__cyan_table_cell {
+        // 控制行高
+        padding: $TableCellPadding;
+        height: $TableCellHeight;
+      }
+
+      &.el-table__row--striped {
+        background-color: #000;
+      }
+
+      &.__no_btn {
+        .__cyan_table_cell {
+          .cell {
+            padding-top: 4.5px;
+            padding-bottom: 4.5px;
+          }
+        }
+      }
+    }
+
+    .__cyan_table_header_row {
+      > th {
+        padding: $TableCellHeadPadding;
+        background-color: $TableHeadBg;
+        font-weight: bold;
+        color: black;
+        &.th-required {
+          .cell {
+            .field {
+              position: relative;
+              &::before {
+                position: absolute;
+                top: -3px;
+                left: -10px;
+                content: "*";
+                font-size: 18px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // 单元格
+    .el-table__header th,
+    .el-table__body-wrapper td,
+    .el-table__fixed-body-wrapper td {
+      text-align: center;
+      font-size: $TableCellFontSize;
+      &.is-right {
+        text-align: right;
+      }
+      &.is-left {
+        text-align: left;
+      }
+    }
+  }
+}
+// pagination
+.__cyan_pagination_wrap {
+  .el-pagination {
+    text-align: center;
+    .el-pager > li,
+    .btn-prev,
+    .btn-next {
+      margin-right: 6px;
+      width: 36px;
+      height: 34px;
+      border: 1px solid $PaginationBorder;
+      background-color: #fff;
+      line-height: 34px;
+      font-size: 16px;
+      color: $text;
+      &.active {
+        color: $primary;
+        border-color: $primary;
+        background-color: $primaryOpacity;
+      }
+    }
+    .btn-prev {
+      padding-right: 6px;
+    }
+    .btn-next {
+      padding-left: 6px;
+    }
+    .el-pagination__jump {
+      height: 34px;
+      line-height: 34px;
+      .el-pagination__editor {
+        .el-input__inner {
+          height: 34px;
+          border-radius: 0px;
+        }
+      }
+    }
+  }
+}
+
+// border-radius
+.el-input,
+.el-select,
+.el-upload,
+.el-cascader,
+.el-date-editor {
+  .el-input__inner {
+    border-radius: 0 !important;
+  }
+}
+.el-button {
+  border-radius: 0 !important;
+}
+
+// input
+.el-input {
+  width: 220px;
+}
+
+.el-select {
+  width: 160px;
+  .el-input {
+    width: 100%;
+  }
+}
+
+.__cyan_filter_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+// dialog
+.__cyan_dialog {
+  .el-dialog__body {
+    padding: 30px 30px 10px 20px;
+    .__cyan_form_wrap {
+      .el-input,
+      .el-select,
+      .el-input-number {
+        width: 100%;
+      }
+      .el-form-item {
+        &.w-half {
+          width: 50%;
+        }
+      }
+    }
+  }
+  .__cyan_dialog_footer {
+    display: flex;
+    justify-content: center;
+    .el-button {
+      width: 80px;
+    }
+
+    > .el-button {
+      margin-right: 20px;
+      &:nth-child(n + 2) {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.__cyan_tips {
+  font-size: 12px;
+  color: $text;
+}
+
+.el-date-editor {
+  .el-range-separator {
+    box-sizing: content-box;
+  }
+}
+.danger-text {
+  color: $danger;
+}

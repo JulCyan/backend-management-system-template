@@ -1,0 +1,98 @@
+/* Variables */
+
+// Base color
+$primary: #5ea953;
+$primaryOpacity: #eff6ed;
+$blue: #324157;
+$light-blue: #3a71a8;
+$danger: #c03639;
+$warning: #DC704C;
+$warningOpacity: #dc704c2e;
+$green: #30b08f;
+$tiffany: #4ab7bd;
+$yellow: #fec171;
+$panGreen: #30b08f;
+$text: #999999;
+$border: #e5e5e5;
+$title: #131414;
+
+// Scroll
+$scrollSize: 8px;
+// Font
+$fontMin: 12px;
+$fontBase: 14px;
+$fontLv1: 16px;
+$lineHeightBase: 1.5;
+$fontTitle: $fontLv1;
+
+// Header
+$headerBg: $primary;
+$headerHeight: 50px;
+
+// Sidebar
+$sideBarWidth: 210px;
+$subMenuBg: #fff;
+$subMenuHover: #ccc;
+$subMenuActiveText: $primary;
+$menuBg: #fff;
+$menuText: $text;
+$menuActiveText: $primary; // Also see settings.sidebarTextTheme
+
+// Main
+$mainBg: #f5f5f5;
+$mainPadding: 10px;
+$tabsContainerPadding: 25px;
+
+// Login page
+$lightGray: #eee;
+$darkGray: #889aa4;
+$loginBg: #2d3a4b;
+$loginCursorColor: #fff;
+
+// Position z-index
+$ZILv1: 10;
+$ZILv2: 100;
+$ZILv3: 1000;
+$ZILv4: 10000;
+
+// Table
+//Color
+$TableHeadBg: #F2F4F3;
+// Font
+$TableCellFontSize: $fontBase;
+// min-width
+$TableWBase: 50px; // 序号
+$TableWOne: 80px; // 8位num
+$TableWTwo: 100px; // 4字
+$TableWThree: 120px; // 6字 11位num
+$TableWFour: 150px;
+$TableWFive: 200px; // 10字 18字符
+$TableWSix: 250px; // 15字
+$TableWSeven: 300px; // 20字
+$TableWDate: 160px; // YYYY-MM-DD HH:mm:ss
+
+// Cell padding
+$TableCellPadding: 0 0; /** 控制 cell 高度 */
+$TableCellHeight: 32px;
+$TableCellHeadPadding: 4.5px 0; /** 控制 head cell 高度 */
+
+// Pagination
+// Color
+$PaginationBorder: $border;
+
+// The :export directive is the magic sauce for webpack
+// https://mattferderer.com/use-sass-variables-in-typescript-and-javascript
+:export {
+  menuBg: $menuBg;
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  TableWBase: $TableWBase;
+  TableWOne: $TableWOne;
+  TableWTwo: $TableWTwo;
+  TableWThree: $TableWThree;
+  TableWFour: $TableWFour;
+  TableWFive: $TableWFive;
+  TableWSix: $TableWSix;
+  TableWSeven: $TableWSeven;
+  TableWDate: $TableWDate;
+}
