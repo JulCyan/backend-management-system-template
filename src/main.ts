@@ -12,8 +12,8 @@ import '@/plugins/registerServiceWorker'
 Vue.use(axios)
 Vue.use(utils)
 Vue.use(element)
-Vue.use(notification)
-Vue.use(svg)
+// Vue.use(notification)
+// Vue.use(svg)
 
 new Vue({
   router,

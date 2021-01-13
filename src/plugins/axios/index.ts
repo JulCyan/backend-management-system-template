@@ -34,36 +34,7 @@ instance.interceptors.response.use((response: AxiosResponse): any => {
     if (['arraybuffer'].includes(response.request.responseType)) {
       return response
     }
-    let { code, state, message } = response.data
-    // 业务状态码 为 2xx
-    if (SuccessStatus.includes(code)) {
-      !state && Notification({
-        type: 'success',
-        message
-      })
-      return response.data
-      // 业务状态码 为 401 or 403
-    } else if (UnauthorizedStatus.includes(code)) {
-      UserModule.ResetToken()
-      location.reload()
-      // 无访问权限
-    } else if (code === 4003) {
-      !state && Notification({
-        type: 'error',
-        message,
-        onClose: () => {
-          location.href = '/'
-        }
-      })
-      // others
-    } else {
-      !state && Notification({
-        type: 'error',
-        message
-      })
-      response.data = {}
-      return response.data
-    }
+    businessCodeHandler(response)
   }
 }, (responseError) => {
   let { response } = responseError
@@ -77,6 +48,39 @@ instance.interceptors.response.use((response: AxiosResponse): any => {
     return response
   }
 })
+
+export const businessCodeHandler = (response) => {
+  let { code, state, message } = response.data
+  // 业务状态码 为 2xx
+  if (SuccessStatus.includes(code)) {
+    !state && Notification({
+      type: 'success',
+      message
+    })
+    return response.data
+    // 业务状态码 为 401 or 403
+  } else if (UnauthorizedStatus.includes(code)) {
+    UserModule.ResetToken()
+    location.reload()
+    // 无访问权限
+  } else if (code === 4003) {
+    !state && Notification({
+      type: 'error',
+      message,
+      onClose: () => {
+        location.href = '/'
+      }
+    })
+    // others
+  } else {
+    !state && Notification({
+      type: 'error',
+      message
+    })
+    response.data = {}
+    return response.data
+  }
+}
 
 export default {
   install(Vue: any) {

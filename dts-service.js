@@ -1,17 +1,27 @@
+const CONFIG = {
+  // root 目录
+  rootDir: './src',
+  // .d.ts 输出目录
+  typesOutDir: './@types',
+  // 默认排除文件
+  defaultExcludesFiles: ['index.ts'],
+  // 目录来源列表 相对 rootDir
+  watchList: [
+    '/api'
+  ]
+}
 const chokidar = require('chokidar')
 const fs = require('fs')
 const path = require('path')
-const RESOURCE_ROOT_PATH = './src'
-const TYPES_ROOT_PATH = './@types'
-const API_PATH = RESOURCE_ROOT_PATH + '/api'
-const excludesFiles = ['index.ts']
 chokidar.watch('./src/api', {
   persistent: true,
   ignored: /(^|[\/\\])\..|index.ts|index.d.ts|node_modules/,
   depth: 4
 }).on('all', (event, pathname) => {
-  console.log(event, pathname)
-  writeDTSFiles(API_PATH)
+  // console.log(event, pathname)
+  CONFIG.watchList.forEach(item => {
+    writeDTSFiles(CONFIG.rootDir + item)
+  })
   success()
 })
 
@@ -24,9 +34,9 @@ function writeDTSFiles(DIR_PATH, root) {
   const rootFilenames = fs.readdirSync(DIR_PATH)
   const relativePath = DIR_PATH.replace(root, '')
   // 遍历文件
-  rootFilenames.filter(item => !excludesFiles.includes(item)).forEach(function(file) {
+  rootFilenames.filter(item => !CONFIG.defaultExcludesFiles.includes(item)).forEach(function(file) {
     const sourcePath = pathFormatter(path.join(DIR_PATH, `/${file}/`))
-    const targetPath = pathFormatter(path.join(TYPES_ROOT_PATH + relativePath, `/${file}/`))
+    const targetPath = pathFormatter(path.join(CONFIG.typesOutDir + relativePath, `/${file}/`))
     fs.stat(sourcePath, function(err, stats) {
       if (err) {
         console.log(file + 'is not a directory...')
@@ -39,7 +49,6 @@ function writeDTSFiles(DIR_PATH, root) {
         } else {
           // 不是文件夹时生成对应 .d.ts 文件内容
           let list = getExecStrs(readTSFiles(sourcePath))
-          console.log(sourcePath)
           // const data = fs.readFileSync(path.join(sourcePath, file), 'utf-8')
           fs.writeFileSync(`${targetPath.replace('.ts/', '')}.d.ts`, generateDTSData(list))
         }
