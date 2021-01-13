@@ -1,17 +1,15 @@
-// disabled and deprecated
-type requireContextConfig = {
-    path?: string
-    deep?: boolean
-    filterRegExp?: RegExp
-    mode?: 'sync' | 'eager' | 'weak' | 'lazy' | 'lazy-once',
-    excludes?: Array<string>
-}
-export default (config?: requireContextConfig): Object => {
-  const defaultConfig = { path: './', deep: true, filterRegExp: /\.ts$/, mode: undefined, excludes: [] }
-  let { path, deep, filterRegExp, mode, excludes } = { ...defaultConfig, ...config }
-  // TODO: 获取当前页面下所有文件路径
-  let context = require.context(path, deep, filterRegExp, mode)
-  // TODO: 获取文件路径
+// 1. 安装 "@babel/plugin-transform-runtime": "^7.12.10"
+// 2. babel.config.js 配置  sourceType: 'unambiguous'
+// 3. tsconfig.json  配置 "module": "commonjs"
+// 4. 下面是替换统一出口文件 export * from 'xxx' 代码
+
+// const { requireContext } = require('@/plugins/utils/require-context')
+// let list = requireContext(require.context('.', true, /\.ts$/))
+// Object.keys(list).forEach((key) => {
+//   exports[key] = list[key]
+// })
+
+exports.requireContext = function(context, excludes:Array<string> = ['.d.ts']) {
   let list = {}
   // TODO: 过滤非必要加载文件
   context.keys().filter((item) => {

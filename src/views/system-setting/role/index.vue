@@ -23,7 +23,10 @@
       </section>
       <el-button
         type="primary"
-        @click="data.dialogFlag = true;data.pageType = pageType.add"
+        @click="
+          data.dialogFlag = true;
+          data.pageType = pageType.add;
+        "
       >
         新增
       </el-button>
@@ -98,6 +101,8 @@
 import { Vue, Component, Mixins, Watch } from 'vue-property-decorator'
 import { MixinForm } from '@/mixins'
 import { TableColumnType } from '@/components/Table/index.vue'
+import { SuccessStatus, _isDev } from '@/configs/const'
+import { Tree } from 'element-ui'
 import {
   roleList,
   roleDel,
@@ -106,8 +111,6 @@ import {
   roleAdd,
   resourceListGetAllEnable
 } from '@/api'
-import { SuccessStatus, _isDev } from '@/configs/const'
-import { Tree } from 'element-ui'
 @Component
 export default class Role extends Mixins(MixinForm) {
   private data: any = {
