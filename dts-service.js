@@ -13,13 +13,14 @@ const CONFIG = {
 const chokidar = require('chokidar')
 const fs = require('fs')
 const path = require('path')
-chokidar.watch('./src/api', {
+chokidar.watch(CONFIG.rootDir, {
   persistent: true,
   ignored: /(^|[\/\\])\..|index.ts|index.d.ts|node_modules/,
   depth: 4
 }).on('all', (event, pathname) => {
   // console.log(event, pathname)
   CONFIG.watchList.forEach(item => {
+    fs.mkdirSync(CONFIG.typesOutDir + item, { recursive: true })
     writeDTSFiles(CONFIG.rootDir + item)
   })
   success()
@@ -27,7 +28,7 @@ chokidar.watch('./src/api', {
 
 function writeDTSFiles(DIR_PATH, root) {
   if (!root) {
-    root = DIR_PATH
+    root = CONFIG.rootDir
   }
   DIR_PATH = pathFormatter(DIR_PATH)
   root = pathFormatter(root)
