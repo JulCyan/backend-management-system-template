@@ -21,12 +21,12 @@ chokidar.watch(CONFIG.rootDir, {
   // console.log(event, pathname)
   CONFIG.watchList.forEach(item => {
     fs.mkdirSync(CONFIG.typesOutDir + item, { recursive: true })
-    writeDTSFiles(CONFIG.rootDir + item)
+    writeDTSFiles(CONFIG.rootDir + item, item)
   })
   success()
 })
 
-function writeDTSFiles(DIR_PATH, root) {
+function writeDTSFiles(DIR_PATH, moduleName, root) {
   if (!root) {
     root = CONFIG.rootDir
   }
@@ -46,12 +46,12 @@ function writeDTSFiles(DIR_PATH, root) {
         if (isDir) {
           // 如果是文件夹则递归执行 writeDTSFiles
           fs.mkdirSync(targetPath, { recursive: true })
-          writeDTSFiles(sourcePath, root)
+          writeDTSFiles(sourcePath, moduleName, root)
         } else {
           // 不是文件夹时生成对应 .d.ts 文件内容
           let list = getExecStrs(readTSFiles(sourcePath))
           // const data = fs.readFileSync(path.join(sourcePath, file), 'utf-8')
-          fs.writeFileSync(`${targetPath.replace('.ts/', '')}.d.ts`, generateDTSData(list))
+          fs.writeFileSync(`${targetPath.replace('.ts/', '')}.d.ts`, generateDTSFileContent(list, moduleName))
         }
       }
     })
@@ -66,8 +66,8 @@ function pathFormatter(resourcePath) {
   return path.join(resourcePath).replace(/\\/g, '\/')
 }
 
-function generateDTSData(data) {
-  let firstLine = 'declare module \'@/api\' {' + '\n'
+function generateDTSFileContent(data, moduleName) {
+  let firstLine = `declare module '@${moduleName}' {` + '\n'
   let endLine = '}' + '\n'
   for (let i = 0; i < data.length; i++) {
     firstLine += '  export const ' + data[i] + ': IRequestFunc' + '\n'
