@@ -10,7 +10,20 @@ yarn install
 yarn serve
 ```
 
+### DTS file generation service for development
+
+```
+yarn dts-service
+```
+
+### Concurrently to open service for development
+
+```
+yarn concurrently-serve
+```
+
 ### Compiles and minifies for production
+
 ```
 yarn build
 ```
@@ -58,7 +71,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 |── tsconfig.json                         # typescript 配置
 └── vue.config.js                         # webpack 配置
 
-``` 
+```
 
 
 ## Project Use
@@ -73,9 +86,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
   - Vuex-Class
 
-### Custom Code 
+### Code Lint
 
   - ESlint
+  - DTS-Service
 
 ### ENV Config
 
@@ -88,5 +102,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   - .env < .env.staging < .env.staging.local
 
 #### API_URL
-    
+
   - .env* 文件中, VUE_APP_API_URL=后端接口地址
+
+#### DTS-Service
+
+- 监听 API 文件夹下 RequestFunc 变动自动生成对应的 .d.ts 文件 
+
+- 可自定义配置目录及自定义 .d.ts 生成规则
