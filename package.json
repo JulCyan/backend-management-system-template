@@ -1,7 +1,6 @@
 {
   "name": "backend-management-system-template",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "concurrently-serve": "concurrently \"yarn  cli-serve\" \"yarn dts-service\"",
     "serve": "vue-cli-service serve",
