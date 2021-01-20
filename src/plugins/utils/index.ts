@@ -1,5 +1,4 @@
 import { ResourceType, BrowserType, ImplicitParseFalseExcludes, WeChatJsApiList as jsApiList, RegWeChat, PermissionArgs, DataType } from '@/configs/const'
-import Layout from '@/layout/index.vue'
 import { BaseNS } from '@/configs/type'
 import { IDirectiveBinding } from '@/configs/interface'
 import VueRouter, { RawLocation, RouteConfig } from 'vue-router/types'
@@ -615,7 +614,7 @@ export class RouterOperation extends DOMOperation {
     resultRoutes = routes.map((item: any) => {
       let newItem: any = {
         ...item,
-        component: item.component ? () => import(/* webpackChunkName: "[request]" */ `@/views/${item.component}.vue`) : Layout
+        component: item.component ? () => import(/* webpackChunkName: "[request]" */ `@/views/${item.component}.vue`) : null
       }
       // 子路由也需要挂载 component
       newItem.children && (newItem.children = this.generateAsyncRoutes(newItem.children))

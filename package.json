@@ -2,7 +2,7 @@
   "name": "backend-management-system-template",
   "version": "0.1.0",
   "scripts": {
-    "concurrently-serve": "concurrently \"yarn  cli-serve\" \"yarn dts-service\"",
+    "concurrently-serve": "concurrently \"yarn serve\" \"yarn dts-service\"",
     "serve": "vue-cli-service serve",
     "dts-serve": "node dts-service.js",
     "serve:test": "vue-cli-service serve --mode test",
@@ -12,6 +12,7 @@
     "build:test": "vue-cli-service build --mode test",
     "build:prod": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint",
+    "test:unit": "jest --clearCache && vue-cli-service test:unit",
     "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6"
   },
   "dependencies": {
