@@ -4,27 +4,44 @@
       name="fade-transform"
       mode="out-in"
     >
-      <router-view class="app-main-content-container" />
+      <keep-alive :include="cachedViews">
+        <router-view
+          :key="key"
+          class="app-main-content-container"
+        />
+      </keep-alive>
     </transition>
   </section>
 </template>
 
 <script lang="ts">
+import { TagsViewModule } from '@/plugins/store/modules/tags-view'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
   name: 'AppMain'
 })
-export default class extends Vue {}
+export default class AppMain extends Vue {
+  get cachedViews() {
+    return TagsViewModule.cachedViews
+  }
+
+  get key() {
+    return this.$route.path
+  }
+}
 </script>
 
 <style lang="scss">
 .app-main {
+  @include calcVHMinHeight($headerHeight);
+  width: 100%;
+  position: relative;
   overflow: hidden;
-  padding: $mainPadding 0 0 $mainPadding;
+  padding: $mainVerticalPadding $mainHorizontalPadding;
   .app-main-content-container {
     padding: 30px;
-    min-height: 526px;
+    @include calcVHMinHeight($headerHeight + $mainVerticalPadding * 2);
     background-color: #fff;
     &.include-real-intergrate-container {
       padding: 0;
@@ -62,6 +79,29 @@ export default class extends Vue {}
         padding: 15px $tabsContainerPadding;
       }
     }
+  }
+}
+
+.fixed-header + .app-main {
+  padding-top: $headerHeight + $mainVerticalPadding;
+  height: 100vh;
+  overflow: auto;
+}
+.hasTagsView {
+  .app-main {
+    /* 84 = navbar + tags-view = 50 + 34 */
+    @include calcVHMinHeight(
+      $headerHeight + $mainVerticalPadding + $mainTagsViewHeight
+    );
+    .app-main-content-container {
+      @include calcVHMinHeight(
+        $headerHeight + $mainVerticalPadding * 2 + $mainTagsViewHeight
+      );
+    }
+  }
+
+  .fixed-header + .app-main {
+    padding-top: $headerHeight + $mainVerticalPadding + $mainTagsViewHeight;
   }
 }
 </style>

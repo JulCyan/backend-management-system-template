@@ -31,6 +31,7 @@ $headerHeight: 50px;
 
 // Sidebar
 $sideBarWidth: 210px;
+$sideBarHideWidth: 54px;
 $subMenuBg: #fff;
 $subMenuHover: #ccc;
 $subMenuActiveText: $primary;
@@ -40,7 +41,9 @@ $menuActiveText: $primary; // Also see settings.sidebarTextTheme
 
 // Main
 $mainBg: #f5f5f5;
-$mainPadding: 10px;
+$mainVerticalPadding: 10px;
+$mainHorizontalPadding: 10px;
+$mainTagsViewHeight: 40px;
 $tabsContainerPadding: 25px;
 
 // Login page
@@ -60,16 +63,6 @@ $ZILv4: 10000;
 $TableHeadBg: #F2F4F3;
 // Font
 $TableCellFontSize: $fontBase;
-// min-width
-$TableWBase: 50px; // 序号
-$TableWOne: 80px; // 8位num
-$TableWTwo: 100px; // 4字
-$TableWThree: 120px; // 6字 11位num
-$TableWFour: 150px;
-$TableWFive: 200px; // 10字 18字符
-$TableWSix: 250px; // 15字
-$TableWSeven: 300px; // 20字
-$TableWDate: 160px; // YYYY-MM-DD HH:mm:ss
 
 // Cell padding
 $TableCellPadding: 0 0; /** 控制 cell 高度 */
@@ -86,13 +79,4 @@ $PaginationBorder: $border;
   menuBg: $menuBg;
   menuText: $menuText;
   menuActiveText: $menuActiveText;
-  TableWBase: $TableWBase;
-  TableWOne: $TableWOne;
-  TableWTwo: $TableWTwo;
-  TableWThree: $TableWThree;
-  TableWFour: $TableWFour;
-  TableWFive: $TableWFive;
-  TableWSix: $TableWSix;
-  TableWSeven: $TableWSeven;
-  TableWDate: $TableWDate;
 }

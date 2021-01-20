@@ -8,10 +8,16 @@
       class="drawer-bg"
       @click="handleClickOutside"
     />
-    <HeaderDefault class="header-container" />
+    <!-- <HeaderDefault class="header-container" /> -->
     <sidebar class="sidebar-container" />
-    <div class="main-container">
-      <navbar />
+    <div
+      :class="{hasTagsView: showTagsView}"
+      class="main-container"
+    >
+      <div :class="{'fixed-header': fixedHeader}">
+        <navbar />
+        <tags-view v-if="showTagsView" />
+      </div>
       <app-main />
     </div>
   </div>
@@ -21,7 +27,7 @@
 import { Component } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { DeviceType, AppModule } from '@/plugins/store/modules/app'
-import { AppMain, Navbar, Sidebar, HeaderDefault } from './components'
+import { AppMain, Navbar, Sidebar, TagsView, HeaderDefault } from './components'
 import ResizeMixin from './mixin/resize'
 
 @Component({
@@ -30,7 +36,8 @@ import ResizeMixin from './mixin/resize'
     AppMain,
     Navbar,
     Sidebar,
-    HeaderDefault
+    HeaderDefault,
+    TagsView
   }
 })
 export default class extends mixins(ResizeMixin) {
@@ -41,6 +48,14 @@ export default class extends mixins(ResizeMixin) {
       withoutAnimation: this.sidebar.withoutAnimation,
       mobile: this.device === DeviceType.Mobile
     }
+  }
+
+  get fixedHeader() {
+    return true
+  }
+
+  get showTagsView() {
+    return true
   }
 
   private handleClickOutside() {
@@ -81,7 +96,7 @@ export default class extends mixins(ResizeMixin) {
   min-height: 100%;
   transition: margin-left 0.28s;
   margin-left: $sideBarWidth;
-  padding-top: $headerHeight;
+  // padding-top: $headerHeight;
   position: relative;
   background-color: $mainBg;
 }
@@ -91,22 +106,35 @@ export default class extends mixins(ResizeMixin) {
   width: $sideBarWidth !important;
   position: fixed;
   font-size: 0px;
-  top: $headerHeight;
+  // top: $headerHeight;
   bottom: 0;
   left: 0;
   z-index: 1001;
   overflow: hidden;
-  @include calcHeight($headerHeight);
+  // @include calcVHMinHeight($headerHeight);
 }
 
 .hideSidebar {
   .main-container {
-    margin-left: 54px;
+    margin-left: $sideBarHideWidth;
   }
 
   .sidebar-container {
-    width: 54px !important;
+    width: $sideBarHideWidth !important;
   }
+
+   .fixed-header {
+    width: calc(100% - #{$sideBarHideWidth})
+  }
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  width: calc(100% - #{$sideBarWidth});
+  transition: width 0.28s;
 }
 
 /* for mobile response 适配移动端 */
@@ -131,6 +159,10 @@ export default class extends mixins(ResizeMixin) {
       transition-duration: 0.3s;
       transform: translate3d(-$sideBarWidth, 0, 0);
     }
+  }
+
+  .fixed-header {
+    width: 100%;
   }
 }
 

@@ -15,6 +15,6 @@
   -webkit-line-clamp: $num;
 }
 
-@mixin calcHeight($height) {
-  height: calc(100% - #{$height});
+@mixin calcVHMinHeight($height) {
+  min-height: calc(100vh - #{$height});
 }
