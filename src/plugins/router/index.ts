@@ -27,11 +27,13 @@ Vue.use(Router)
 export const WhiteRoutes = [
   {
     path: '/login',
+    name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
     meta: { title: '后台管理系统模板', hidden: true }
   },
   {
     path: '/404',
+    name: '404',
     component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
     meta: { hidden: true }
   },
@@ -46,11 +48,13 @@ export const WhiteRoutes = [
     meta: { hidden: true },
     children: [
       {
+        name: 'index',
         path: '/',
         component: Index,
-        meta: { title: '首页', hidden: true }
+        meta: { title: '首页', hidden: true, affix: true }
       },
       {
+        name: 'change-pwd',
         path: 'change-pwd',
         component: () => import(/* webpackChunkName: "changePwd" */ '@/views/change-pwd/index.vue'),
         meta: { title: '修改密码', hidden: true }
@@ -61,6 +65,7 @@ export const WhiteRoutes = [
 
 export const LocalRoutes = [
   {
+    name: 'system-setting',
     path: '/system-setting',
     component: () => import('@/layout/index.vue'),
     redirect: '/system-setting/account',
@@ -69,6 +74,7 @@ export const LocalRoutes = [
     },
     children: [
       {
+        name: 'account',
         path: 'account',
         component: () => import(/* webpackChunkName: "[request]" */ '@/views/system-setting/account/index.vue'),
         meta: {
@@ -76,6 +82,7 @@ export const LocalRoutes = [
         }
       },
       {
+        name: 'role',
         path: 'role',
         component: () => import(/* webpackChunkName: "[request]" */ '@/views/system-setting/role/index.vue'),
         meta: {
@@ -83,6 +90,7 @@ export const LocalRoutes = [
         }
       },
       {
+        name: 'resource',
         path: 'resource',
         component: () => import(/* webpackChunkName: "[request]" */ '@/views/system-setting/resource/index.vue'),
         meta: {
@@ -90,6 +98,7 @@ export const LocalRoutes = [
         }
       },
       {
+        name: 'dict',
         path: 'dict',
         component: () => import(/* webpackChunkName: "[request]" */ '@/views/system-setting/dict/index.vue'),
         meta: {
@@ -97,6 +106,7 @@ export const LocalRoutes = [
         }
       },
       {
+        name: 'dict/data',
         path: 'dict/data',
         component: () => import(/* webpackChunkName: "[request]" */ '@/views/system-setting/dict/data.vue'),
         meta: {

@@ -600,6 +600,7 @@ export class RouterOperation extends DOMOperation {
         sonNode: item.sonNode && item.sonNode.length !== 0 && item.sonNode[0].perType != ResourceType.button ? item.sonNode : null
       }))
       .map(item => ({
+        name: item.routeAddr.replace(/\//ig, ''),
         path: item.routeAddr,
         component: item.component,
         redirect: item.meta.redirect || '',

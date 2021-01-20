@@ -52,11 +52,22 @@
             {{ $utils.formatDate($utils.catchNull(row, tableColum.prop)) }}
           </div>
           <div v-else-if="tableColum.type === tableColumnType.dateAbout">
-            {{ $utils.formatDate($utils.catchNull(row, tableColum.prop), 'YYYY-MM-DD') }}
+            {{
+              $utils.formatDate(
+                $utils.catchNull(row, tableColum.prop),
+                "YYYY-MM-DD"
+              )
+            }}
           </div>
           <div v-else>
             <!-- eslint-disable-next-line vue/no-v-html -->
-            <div v-html="tableColum.prop !== undefined ? $utils.catchNull(row, tableColum.prop) : tableColum.computed(row)"></div>
+            <div
+              v-html="
+                tableColum.prop !== undefined
+                  ? $utils.catchNull(row, tableColum.prop)
+                  : tableColum.computed(row)
+              "
+            ></div>
           </div>
         </template>
       </el-table-column>
@@ -66,7 +77,6 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import variables from '@/styles/_variables.scss'
 import { EXPagination } from '..'
 import TableComplex from './TableComplex.vue'
 import { log } from 'console'
@@ -117,7 +127,16 @@ export default class EXTable extends Vue {
   private tableList!: Array<any>;
 
   get variables() {
-    return variables
+    return {
+      TableWBase: '50px',
+      TableWDate: '160px',
+      TableWFive: '200px',
+      TableWFour: '150px',
+      TableWOne: '80px',
+      TableWSeven: '300px',
+      TableWSix: '250px',
+      TableWThree: '120px'
+    }
   }
 
   get tableColumnType() {
@@ -127,11 +146,11 @@ export default class EXTable extends Vue {
   protected getMinWidth(tableColum) {
     let result = ''
     if (tableColum.type === TableColumnType.date) {
-      result = variables['TableWDate']
+      result = this.variables['TableWDate']
     } else if (tableColum.type === TableColumnType.dateAbout) {
-      result = variables['TableWTwo']
+      result = this.variables['TableWTwo']
     } else {
-      result = variables[tableColum.minWidth]
+      result = this.variables[tableColum.minWidth]
     }
     return result
   }
