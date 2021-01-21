@@ -1,10 +1,8 @@
-import { asyncAddRoutes } from '@/plugins/router'
-import { UserModule } from '@/plugins/store/modules/user'
 import { RouteConfig } from 'vue-router/types'
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
-import { getSidebarStatus, setSidebarStatus } from '@/plugins/cookies'
-import { Utils } from '@/plugins/utils'
+import { getSidebarStatus, setLanguage, setSidebarStatus } from '@/plugins/cookies'
 import store from '@/plugins/store'
+import { getLocale } from '@/plugins/lang'
 
 export enum DeviceType {
   Mobile,
@@ -18,8 +16,8 @@ export interface IAppState {
     withoutAnimation: boolean
   }
   dynamicRoutes: Array<RouteConfig>,
-  keyPathMap: any,
   baseURL: string
+  language: string
 }
 @Module({ dynamic: true, store, name: 'app' })
 class App extends VuexModule implements IAppState {
@@ -28,12 +26,9 @@ class App extends VuexModule implements IAppState {
     withoutAnimation: false
   }
   public device = DeviceType.Desktop
+  public language = getLocale()
   public dynamicRoutes = []
   public baseURL = process.env.VUE_APP_API_URL + process.env.VUE_APP_PREFIX
-
-  get keyPathMap() : any {
-    return new Utils().recursionGetTreeMap(this.dynamicRoutes)
-  }
 
   @Mutation
   private TOGGLE_SIDEBAR(withoutAnimation: boolean) {
@@ -59,8 +54,9 @@ class App extends VuexModule implements IAppState {
   }
 
   @Mutation
-  public SET_DYNAMICROUTES(dynamicRoutes: Array<RouteConfig>) {
-    this.dynamicRoutes = dynamicRoutes
+  private SET_LANGUAGE(language: string) {
+    this.language = language
+    setLanguage(this.language)
   }
 
   @Action
@@ -79,10 +75,8 @@ class App extends VuexModule implements IAppState {
   }
 
   @Action
-  public AsyncAddRoutes() {
-    const utils = new Utils()
-    this.SET_DYNAMICROUTES(utils.generateAsyncRoutes(utils.routesMapper(UserModule.userInfo.perList)))
-    asyncAddRoutes(this.dynamicRoutes)
+  public SetLanguage(language: string) {
+    this.SET_LANGUAGE(language)
   }
 }
 

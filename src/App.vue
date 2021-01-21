@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { UserModule } from '@/plugins/store/modules/user'
-import { AppModule } from '@/plugins/store/modules/app'
+import { PermissionModule } from '@/plugins/store/modules/permission'
 import { asyncAddRoutes, LocalRoutes } from './plugins/router'
 
 @Component({
@@ -19,9 +19,9 @@ export default class App extends Vue {
     this.$router.push('/')
     if (UserModule.token) {
       await UserModule.getUserInfo()
-      await AppModule.AsyncAddRoutes()
+      await PermissionModule.AsyncAddRoutes()
     } else {
-      AppModule.SET_DYNAMICROUTES(LocalRoutes)
+      PermissionModule.SET_DYNAMICROUTES(LocalRoutes)
       asyncAddRoutes(LocalRoutes)
     }
     this.$router.push({

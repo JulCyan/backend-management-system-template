@@ -10,28 +10,7 @@
       id="breadcrumb-container"
       class="breadcrumb-container"
     />
-    <div class="right-menu">
-      <el-dropdown
-        class="avatar-container right-menu-item hover-effect"
-        trigger="click"
-      >
-        <div class="avatar-wrapper">
-          <img
-            src="../../../assets/images/mogu.png"
-            class="user-avatar"
-          >
-          <i class="el-icon-caret-bottom" />
-        </div>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>
-            <span
-              style="display:block;"
-              @click="logout"
-            >退出</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </div>
+    <UserMenu />
   </div>
 </template>
 
@@ -41,15 +20,16 @@ import { AppModule } from '@/plugins/store/modules/app'
 import { UserModule } from '@/plugins/store/modules/user'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
+import UserMenu from '@/layout/components/UserMenu/index.vue'
 
 @Component({
-  name: 'Navbar',
   components: {
     Breadcrumb,
-    Hamburger
+    Hamburger,
+    UserMenu
   }
 })
-export default class extends Vue {
+export default class Navbar extends Vue {
   get sidebar() {
     return AppModule.sidebar
   }

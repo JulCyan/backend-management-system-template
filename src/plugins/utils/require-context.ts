@@ -9,7 +9,7 @@
 //   exports[key] = list[key]
 // })
 
-exports.requireContext = function(context, excludes:Array<string> = ['.d.ts']) {
+exports.requireContext = function(context, excludes:Array<string> = ['.d.ts', 'index']) {
   let list = {}
   // TODO: 过滤非必要加载文件
   context.keys().filter((item) => {

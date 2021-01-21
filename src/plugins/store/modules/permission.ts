@@ -1,4 +1,4 @@
-import { asyncAddRoutes } from '@/plugins/router'
+import { asyncAddRoutes, WhiteRoutes } from '@/plugins/router'
 import { UserModule } from '@/plugins/store/modules/user'
 import { RouteConfig } from 'vue-router/types'
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
@@ -6,15 +6,20 @@ import { Utils } from '@/plugins/utils'
 import store from '@/plugins/store'
 
 export interface IPermissionState {
-  dynamicRoutes: Array<RouteConfig>,
-  keyPathMap: any,
+  dynamicRoutes: Array<RouteConfig>
+  keyPathMap: Map<string, string>
+  routes: Array<RouteConfig>
 }
 @Module({ dynamic: true, store, name: 'permission' })
-class App extends VuexModule implements IPermissionState {
+class Permission extends VuexModule implements IPermissionState {
   public dynamicRoutes = []
 
   get keyPathMap() : any {
     return new Utils().recursionGetTreeMap(this.dynamicRoutes)
+  }
+
+  get routes() : any {
+    return WhiteRoutes.concat(this.dynamicRoutes)
   }
 
   @Mutation
@@ -30,4 +35,4 @@ class App extends VuexModule implements IPermissionState {
   }
 }
 
-export const AppModule = getModule(App)
+export const PermissionModule = getModule(Permission)

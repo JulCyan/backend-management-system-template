@@ -105,7 +105,7 @@ import { UserModule } from '@/plugins/store/modules/user'
 import { getVerifyCode } from '@/api'
 import { asyncAddRoutes } from '@/plugins/router'
 import { SuccessStatus } from '@/configs/const'
-import { AppModule } from '@/plugins/store/modules/app'
+import { PermissionModule } from '@/plugins/store/modules/permission'
 const md5 = require('md5')
 
 @Component({
@@ -177,7 +177,7 @@ export default class extends Vue {
             ...this.loginForm,
             pwd: md5(this.loginForm.pwd)
           })
-          await AppModule.AsyncAddRoutes()
+          await PermissionModule.AsyncAddRoutes()
           setTimeout(() => {
             this.$router.push({
               path: this.redirect == '/404' ? '/' : this.redirect,
