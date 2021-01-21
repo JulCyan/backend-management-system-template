@@ -3,7 +3,8 @@ import { UserModule } from '@/plugins/store/modules/user'
 import { SuccessStatus, ServerErrorStatus, UnauthorizedStatus } from '@/configs/const'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { notification as Notification } from '../notification'
-const baseURL = process.env.VUE_APP_API_URL + process.env.VUE_APP_PREFIX
+import settings from '@/settings.json'
+const baseURL = settings.enableProxy ? '' : process.env.VUE_APP_API_URL + process.env.VUE_APP_PREFIX
 
 export const instance = axios.create({
   baseURL,

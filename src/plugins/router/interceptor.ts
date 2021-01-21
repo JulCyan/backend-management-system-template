@@ -19,20 +19,24 @@ const whiteList = ['/login']
 
 router.beforeEach(async(to: Route, _: Route, next: any) => {
   NProgress.start()
-  if (UserModule.token) {
-    if (to.path === '/login') {
-      next({ path: '/' })
-      NProgress.done()
+  if (settings.enableRouterInterceptor) {
+    if (UserModule.token) {
+      if (to.path === '/login') {
+        next({ path: '/' })
+        NProgress.done()
+      } else {
+        next()
+      }
     } else {
-      next()
+      if (whiteList.indexOf(to.path) !== -1) {
+        next()
+      } else {
+        next(`/login?redirect=${to.path}`)
+        NProgress.done()
+      }
     }
   } else {
-    if (whiteList.indexOf(to.path) !== -1) {
-      next()
-    } else {
-      next(`/login?redirect=${to.path}`)
-      NProgress.done()
-    }
+    next()
   }
 })
 

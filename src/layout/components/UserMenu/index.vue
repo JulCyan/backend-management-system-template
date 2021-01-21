@@ -60,7 +60,7 @@
     <div class="right-menu">
       <template v-if="device !== 'mobile'">
         <header-search class="right-menu-item" />
-        <!-- <error-log class="errLog-container right-menu-item hover-effect" /> -->
+        <error-log class="errLog-container right-menu-item hover-effect" />
         <screenfull class="right-menu-item hover-effect" />
         <!-- <lang-select class="right-menu-item hover-effect" /> -->
       </template>
@@ -96,13 +96,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { Screenfull, HeaderSearch } from '@/components'
+import { Screenfull, HeaderSearch, ErrorLog } from '@/components'
 import { AppModule } from '@/plugins/store/modules/app'
 import { UserModule } from '@/plugins/store/modules/user'
 @Component({
   components: {
     Screenfull,
-    HeaderSearch
+    HeaderSearch,
+    ErrorLog
   }
 })
 export default class UserMenu extends Vue {

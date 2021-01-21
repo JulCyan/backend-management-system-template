@@ -30,13 +30,10 @@ const config = {
     proxy: {
       // change xxx-api/login => /mock-api/v1/login
       // detail: https://cli.vuejs.org/config/#devserver-proxy
-      [process.env.VUE_APP_BASE_API]: {
-        target: `http://127.0.0.1:${settings.mockServerPort}/mock-api/v1`,
+      [process.env.VUE_APP_PREFIX]: {
+        target: `${process.env.VUE_APP_BASE_API}:${settings.remoteServerPort}/`,
         changeOrigin: true, // needed for virtual hosted sites
-        ws: true, // proxy websockets
-        pathRewrite: {
-          ['^' + process.env.VUE_APP_BASE_API]: ''
-        }
+        ws: true // proxy websockets
       }
     }
   },
@@ -113,10 +110,10 @@ const config = {
 }
 
 const fitlerConfig = (config) => {
-  if (!settings.useProxy) {
+  if (!settings.enableProxy || !process.env.VUE_APP_BASE_API) {
     delete config.devServer.proxy
   }
-  if (!settings.usePWA) {
+  if (!settings.enablePWA) {
     delete config.devServer.pwa
   }
   return config
