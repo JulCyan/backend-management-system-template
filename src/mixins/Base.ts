@@ -1,6 +1,7 @@
 import { AppModule } from '@/plugins/store/modules/app'
 import { _$PageType, _$DictType } from '@/configs/const/views'
 import { Vue, Component } from 'vue-property-decorator'
+import { PermissionModule } from '@/plugins/store/modules/permission'
 @Component
 export default class Base extends Vue {
   public home() {
@@ -8,7 +9,7 @@ export default class Base extends Vue {
   }
 
   public _$routerPush(key: string, query = {}) {
-    this.$router.push({ path: AppModule.keyPathMap[key], query })
+    this.$router.push({ path: PermissionModule.keyPathMap[key], query })
   }
 
   get _$pageType() {

@@ -59,6 +59,7 @@ import { RouteConfig } from 'vue-router'
 import { AppModule } from '@/plugins/store/modules/app'
 import { TagsViewModule, ITagView } from '@/plugins/store/modules/tags-view'
 import ScrollPane from './ScrollPane.vue'
+import { PermissionModule } from '@/plugins/store/modules/permission'
 
 @Component({
   name: 'TagsView',
@@ -78,7 +79,7 @@ export default class extends Vue {
   }
 
   get routes() {
-    return (this.$router as any).options.routes.concat(AppModule.dynamicRoutes)
+    return PermissionModule.routes
   }
 
   @Watch('$route')

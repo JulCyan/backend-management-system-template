@@ -24,7 +24,7 @@ Vue.use(Router)
  * @param  { string } activeMenu 常用于 meta hidden 为 true 时, 侧边栏选中菜单
  */
 
-export const WhiteRoutes = [
+export const WhiteRoutes: Array<RouteConfig> = [
   {
     path: '/login',
     name: 'login',
@@ -63,7 +63,7 @@ export const WhiteRoutes = [
   }
 ]
 
-export const LocalRoutes = [
+export const LocalRoutes: Array<RouteConfig> = [
   {
     name: 'system-setting',
     path: '/system-setting',

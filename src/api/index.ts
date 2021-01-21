@@ -1,5 +1,5 @@
-const { requireContext } = require('@/plugins/utils/require-context')
-let list = requireContext(require.context('.', true, /\.ts$/))
+var { requireContext } = require('@/plugins/utils/require-context')
+var list = requireContext(require.context('.', true, /\.ts$/))
 Object.keys(list).forEach((key) => {
   exports[key] = list[key]
 })

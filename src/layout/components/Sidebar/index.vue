@@ -35,6 +35,7 @@ import SidebarLogo from './SidebarLogo.vue'
 import variables from '@/styles/_variables.scss'
 import { UserModule } from '@/plugins/store/modules/user'
 import { SettingsModule } from '@/plugins/store/modules/settings'
+import { PermissionModule } from '@/plugins/store/modules/permission'
 
 @Component({
   name: 'SideBar',
@@ -53,7 +54,7 @@ export default class extends Vue {
   }
 
   get routes() {
-    return (this.$router as any).options.routes.concat(AppModule.dynamicRoutes)
+    return PermissionModule.routes
   }
 
   get variables() {
