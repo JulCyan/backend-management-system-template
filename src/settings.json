@@ -5,11 +5,14 @@
   "fixedHeader": true,
   "showSidebarLogo": true,
   "errorLog": [
+    "development",
+    "testing",
     "production"
   ],
   "sidebarTextTheme": true,
   "devServerPort": 8080,
-  "mockServerPort": 8088,
-  "useProxy": false,
-  "usePWA": false
+  "remoteServerPort": 8081,
+  "enableProxy": false,
+  "enablePWA": false,
+  "enableRouterInterceptor": false
 }

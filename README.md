@@ -74,6 +74,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ```
 
 
+## Default Settings
+
+ src/settings 修改部分 settings 时需要重启服务
+
+
 ## Project Use
 
 ### Main 

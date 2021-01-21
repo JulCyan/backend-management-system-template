@@ -9,7 +9,10 @@ declare module '*settings.json' {
         errorLog: string[] // The env to enable the errorlog component, default 'production' only
         sidebarTextTheme: boolean // If true, will change active text color for sidebar based on theme
         devServerPort: number // Port number for webpack-dev-server
-        mockServerPort: number // Port number for mock server
+        remoteServerPort: number // Port number for mock server
+        enableProxy: boolean,
+        enablePWA: boolean,
+        enableRouterInterceptor: boolean
     }
     export const settings: ISettings
     export default settings
