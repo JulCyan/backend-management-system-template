@@ -1,9 +1,4 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios'
-
-export interface IRequestFunc {
-    (...args: any): AxiosRequestConfig
-}
-
+import { AxiosResponse } from 'axios'
 export interface IFormValidate {
     (rule: any, value: any, callback: any): void;
 }

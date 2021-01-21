@@ -1,4 +1,4 @@
-import { IRequestFunc } from '@/configs/interface'
+import { IRequestFunc } from '@/api'
 
 const prefix = 'account'
 export const accountGetBindAccountRoles: IRequestFunc = () => ({

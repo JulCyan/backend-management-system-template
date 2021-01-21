@@ -519,8 +519,8 @@ export class ESNext extends NumberOperation {
           char2 = uInt8Array[i++]
           char3 = uInt8Array[i++]
           out += String.fromCharCode(((c & 0x0F) << 12) |
-    ((char2 & 0x3F) << 6) |
-    ((char3 & 0x3F) << 0))
+            ((char2 & 0x3F) << 6) |
+            ((char3 & 0x3F) << 0))
           break
       }
     }
@@ -576,6 +576,42 @@ export class DOMOperation extends ESNext {
       return 1 + Math.max(...maxChildrenDepth)
     }
     return getDepth(document.querySelector(ele))
+  }
+
+  // 元素类名操作
+  // Check if an element has a class
+  public hasClass(ele: HTMLElement, className: string) {
+    return !!ele.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+  }
+
+  // Add class to element
+  public addClass(ele: HTMLElement, className: string) {
+    if (!this.hasClass(ele, className)) ele.className += ' ' + className
+  }
+
+  // Remove class from element
+  public removeClass(ele: HTMLElement, className: string) {
+    if (!this.hasClass(ele, className)) {
+      const reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+      ele.className = ele.className.replace(reg, ' ')
+    }
+  }
+
+  // Toggle class for the selected element
+  public toggleClass(ele: HTMLElement, className: string) {
+    if (!ele || !className) {
+      return
+    }
+    let classString = ele.className
+    const nameIndex = classString.indexOf(className)
+    if (nameIndex === -1) {
+      classString += '' + className
+    } else {
+      classString =
+        classString.substr(0, nameIndex) +
+        classString.substr(nameIndex + className.length)
+    }
+    ele.className = classString
   }
 }
 

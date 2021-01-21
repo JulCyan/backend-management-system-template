@@ -1,0 +1,15 @@
+{
+  "title": "后台管理系统模板",
+  "showSettings": true,
+  "showTagsView": true,
+  "fixedHeader": true,
+  "showSidebarLogo": true,
+  "errorLog": [
+    "production"
+  ],
+  "sidebarTextTheme": true,
+  "devServerPort": 8080,
+  "mockServerPort": 8088,
+  "useProxy": false,
+  "usePWA": false
+}

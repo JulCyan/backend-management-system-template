@@ -1,4 +1,4 @@
-import { IRequestFunc } from '@/configs/interface'
+import { IRequestFunc } from '@/api'
 import { SuccessStatus } from '@/configs/const/index'
 import { ElForm } from 'element-ui/types/form'
 import { Component, Mixins, Watch } from 'vue-property-decorator'

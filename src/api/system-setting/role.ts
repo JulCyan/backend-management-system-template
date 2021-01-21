@@ -1,4 +1,4 @@
-import { IRequestFunc } from '@/configs/interface'
+import { IRequestFunc } from '@/api'
 
 const prefix = 'role'
 export const roleGetAll: IRequestFunc = () => ({

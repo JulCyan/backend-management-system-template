@@ -4,8 +4,16 @@ import 'nprogress/nprogress.css'
 import { Route } from 'vue-router'
 import { UserModule } from '@/plugins/store/modules/user'
 import { _isDev } from '@/configs/const'
+import settings from '@/settings.json'
 
 NProgress.configure({ showSpinner: false })
+
+const getPageTitle = (metaTitle: string) => {
+  if (metaTitle) {
+    return `${metaTitle} - ${settings.title}`
+  }
+  return `${settings.title}`
+}
 
 const whiteList = ['/login']
 
@@ -30,5 +38,5 @@ router.beforeEach(async(to: Route, _: Route, next: any) => {
 
 router.afterEach((to: Route) => {
   NProgress.done()
-  document.title = to.meta.title
+  document.title = getPageTitle(to.meta.title)
 })

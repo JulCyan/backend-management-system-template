@@ -8,7 +8,6 @@
       class="drawer-bg"
       @click="handleClickOutside"
     />
-    <!-- <HeaderDefault class="header-container" /> -->
     <sidebar class="sidebar-container" />
     <div
       :class="{hasTagsView: showTagsView}"
@@ -19,6 +18,9 @@
         <tags-view v-if="showTagsView" />
       </div>
       <app-main />
+      <right-panel v-if="showSettings">
+        <settings />
+      </right-panel>
     </div>
   </div>
 </template>
@@ -27,8 +29,10 @@
 import { Component } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { DeviceType, AppModule } from '@/plugins/store/modules/app'
-import { AppMain, Navbar, Sidebar, TagsView, HeaderDefault } from './components'
+import { AppMain, Navbar, Sidebar, TagsView, Settings } from './components'
+import { RightPanel } from '@/components'
 import ResizeMixin from './mixin/resize'
+import { SettingsModule } from '@/plugins/store/modules/settings'
 
 @Component({
   name: 'Layout',
@@ -36,8 +40,9 @@ import ResizeMixin from './mixin/resize'
     AppMain,
     Navbar,
     Sidebar,
-    HeaderDefault,
-    TagsView
+    TagsView,
+    Settings,
+    RightPanel
   }
 })
 export default class extends mixins(ResizeMixin) {
@@ -51,11 +56,15 @@ export default class extends mixins(ResizeMixin) {
   }
 
   get fixedHeader() {
-    return true
+    return SettingsModule.fixedHeader
   }
 
   get showTagsView() {
-    return true
+    return SettingsModule.showTagsView
+  }
+
+  get showSettings() {
+    return SettingsModule.showSettings
   }
 
   private handleClickOutside() {
@@ -106,7 +115,7 @@ export default class extends mixins(ResizeMixin) {
   width: $sideBarWidth !important;
   position: fixed;
   font-size: 0px;
-  // top: $headerHeight;
+  top: 0;
   bottom: 0;
   left: 0;
   z-index: 1001;

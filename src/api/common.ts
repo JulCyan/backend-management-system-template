@@ -1,5 +1,5 @@
+import { IRequestFunc } from '@/api'
 
-import { IRequestFunc } from '@/configs/interface'
 export const employeeGetListByName: IRequestFunc = (name) => ({
   method: 'get',
   url: 'employee/getListByName',
