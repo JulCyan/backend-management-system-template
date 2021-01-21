@@ -51,7 +51,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { SettingsModule } from '@/plugins/store/modules/settings'
-import ThemePicker from '@/components/ThemePicker/index.vue'
+import { ThemePicker } from '@/components'
 
 @Component({
   name: 'Settings',

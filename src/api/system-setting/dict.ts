@@ -1,5 +1,5 @@
 import { MaxPageSize } from '@/configs/const/views'
-import { IRequestFunc } from '@/configs/interface'
+import { IRequestFunc } from '@/api'
 
 const prefix = 'sys'
 export const dictList: IRequestFunc = (data) => ({

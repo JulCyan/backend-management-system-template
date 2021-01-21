@@ -70,7 +70,8 @@ export const LocalRoutes = [
     component: () => import('@/layout/index.vue'),
     redirect: '/system-setting/account',
     meta: {
-      title: '系统设置'
+      title: '系统设置',
+      icon: 'el-icon-setting'
     },
     children: [
       {

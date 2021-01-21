@@ -1,4 +1,4 @@
-import { IRequestFunc } from '@/configs/interface'
+import { IRequestFunc } from '@/api'
 
 export const getVerifyCode: IRequestFunc = () => ({
   method: 'get',

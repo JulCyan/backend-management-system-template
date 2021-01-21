@@ -1,5 +1,5 @@
 
-import { IRequestFunc } from '@/configs/interface'
+import { IRequestFunc } from '@/api'
 
 export const freezingExportAreaLog: IRequestFunc = (data) => ({
   url: 'ff/ff',
