@@ -15,7 +15,7 @@ const fs = require('fs')
 const path = require('path')
 chokidar.watch(CONFIG.rootDir, {
   persistent: true,
-  ignored: /(^|[\/\\])\..|index.ts|index.d.ts|node_modules/,
+  ignored: /(^|[/\\])\..|index.ts|index.d.ts|node_modules/,
   depth: 4
 }).on('all', (event, pathname) => {
   // console.log(event, pathname)
@@ -63,7 +63,7 @@ function readTSFiles(filePath) {
 }
 
 function pathFormatter(resourcePath) {
-  return path.join(resourcePath).replace(/\\/g, '\/')
+  return path.join(resourcePath).replace(/\\/g, '/')
 }
 
 function generateDTSFileContent(data, moduleName) {

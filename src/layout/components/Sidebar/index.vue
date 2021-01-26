@@ -29,13 +29,10 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { AppModule } from '@/plugins/store/modules/app'
+import { AppModule, SettingsModule, PermissionModule } from '@/plugins/store/modules'
 import SidebarItem from './SidebarItem.vue'
 import SidebarLogo from './SidebarLogo.vue'
 import variables from '@/styles/_variables.scss'
-import { UserModule } from '@/plugins/store/modules/user'
-import { SettingsModule } from '@/plugins/store/modules/settings'
-import { PermissionModule } from '@/plugins/store/modules/permission'
 
 @Component({
   name: 'SideBar',

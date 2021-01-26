@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { TagsViewModule } from '@/plugins/store/modules/tags-view'
+import { TagsViewModule } from '@/plugins/store/modules'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({

@@ -1,7 +1,6 @@
-import { AppModule } from '@/plugins/store/modules/app'
 import { _$PageType, _$DictType } from '@/configs/const/views'
 import { Vue, Component } from 'vue-property-decorator'
-import { PermissionModule } from '@/plugins/store/modules/permission'
+import { PermissionModule } from '@/plugins/store/modules'
 @Component
 export default class Base extends Vue {
   public home() {

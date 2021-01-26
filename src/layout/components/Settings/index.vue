@@ -50,7 +50,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { SettingsModule } from '@/plugins/store/modules/settings'
+import { SettingsModule } from '@/plugins/store/modules'
 import { ThemePicker } from '@/components'
 
 @Component({

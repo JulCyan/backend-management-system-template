@@ -5,10 +5,11 @@ const path = require('path')
 // use administrator privileges to execute the command line.
 // For example, on Mac: sudo npm run / sudo yarn
 const settings = require('./src/settings.json')
-
+const NODE_ENV_ISDEV = process.env.NODE_ENV === 'development'
+const NODE_ENV_ISPROD = process.env.NODE_ENV === 'production'
 const config = {
-  // publicPath: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  // publicPath: NODE_ENV_ISPROD ? '/vue-typescript-admin-template/' : '/',
+  lintOnSave: NODE_ENV_ISDEV,
   productionSourceMap: false,
   pluginOptions: {
     'style-resources-loader': {
@@ -77,12 +78,12 @@ const config = {
     // Change development env source map if you want.
     // The default in vue-cli is 'eval-cheap-module-source-map'.
     // config
-    //   .when(process.env.NODE_ENV === 'development',
+    //   .when(NODE_ENV_ISDEV,
     //     config => config.devtool('eval-cheap-source-map')
     //   )
 
     config
-      .when(process.env.NODE_ENV !== 'development',
+      .when(!NODE_ENV_ISDEV,
         config => {
           config
             .optimization.splitChunks({
@@ -115,7 +116,7 @@ const config = {
 
     // 添加分析工具
     config
-      .when(process.env.npm_config_report && process.env.NODE_ENV === 'production',
+      .when(process.env.npm_config_report && NODE_ENV_ISPROD,
         config => {
           config.plugin('webpack-bundle-analyzer')
             .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
@@ -123,11 +124,14 @@ const config = {
         })
 
     config.performance
-      .hints('warning')
-      // 入口起点的最大体积
-      .maxEntrypointSize(2 * 1024 * 1024)
-      // 生成文件的最大体积
-      .maxAssetSize(1024 * 1024)
+      .when(NODE_ENV_ISPROD, config => {
+        config
+          .hints('warning')
+          // 入口起点的最大体积
+          .maxEntrypointSize(2 * 1024 * 1024)
+          // 生成文件的最大体积
+          .maxAssetSize(1024 * 1024)
+      })
   }
 }
 

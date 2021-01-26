@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import { IAppState } from './modules/app'
 import { IPermissionState } from './modules/permission'
 import { IUserState } from './modules/user'
-
 Vue.use(Vuex)
 
 export interface IRootState {

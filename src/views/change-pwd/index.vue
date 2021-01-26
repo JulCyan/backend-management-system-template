@@ -96,7 +96,7 @@
 
 <script lang="ts">
 import { IFormValidate } from '@/configs/interface'
-import { UserModule } from '@/plugins/store/modules/user'
+import { UserModule } from '@/plugins/store/modules'
 import { EXButton } from '@/components'
 import { Vue, Component } from 'vue-property-decorator'
 import { ElForm } from 'element-ui/types/form'

@@ -1,5 +1,5 @@
 import { _isDev } from '@/configs/const/env'
-import { UserModule } from '@/plugins/store/modules/user'
+import { UserModule } from '@/plugins/store/modules'
 import { SuccessStatus, ServerErrorStatus, UnauthorizedStatus } from '@/configs/const'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { notification as Notification } from '../notification'

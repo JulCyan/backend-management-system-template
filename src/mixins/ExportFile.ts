@@ -1,6 +1,6 @@
 import { SuccessStatus, UnauthorizedStatus } from '@/configs/const/index'
-import { AppModule } from '@/plugins/store/modules/app'
-import { UserModule } from '@/plugins/store/modules/user'
+import { AppModule, UserModule } from '@/plugins/store/modules'
+
 import { AxiosRequestConfig } from 'axios'
 import { Vue, Component } from 'vue-property-decorator'
 import { notification as Notification } from '@/plugins/notification'
