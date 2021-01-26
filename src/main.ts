@@ -7,7 +7,7 @@ import '@/styles/index.scss' // 全局样式表
 import App from '@/App.vue'
 import { router, store, axios, utils, notification, svg, element, i18n, errorLog } from '@/plugins'
 import '@/plugins/router/interceptor' // vue router interceptor
-import '@/plugins/registerServiceWorker' // pwa
+import '@/plugins/pwa' // pwa
 
 Vue.use(axios) // ajax
 Vue.use(utils) // 工具库
