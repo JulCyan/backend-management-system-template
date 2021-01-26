@@ -1,4 +1,4 @@
-import { ErrorLogModule } from '@/plugins/store/modules/error-log'
+import { ErrorLogModule } from '@/plugins/store/modules'
 import { ESNext } from '@/plugins/utils'
 import settings from '@/settings.json'
 import { DataType } from '@/configs/const'

@@ -53,7 +53,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { AppModule } from '@/plugins/store/modules/app'
+import { AppModule } from '@/plugins/store/modules'
 import settings from '@/settings.json'
 @Component({
   name: 'Login'

@@ -16,8 +16,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { AppModule } from '@/plugins/store/modules/app'
-import { UserModule } from '@/plugins/store/modules/user'
+import { AppModule, UserModule } from '@/plugins/store/modules'
+
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
 import UserMenu from '@/layout/components/UserMenu/index.vue'

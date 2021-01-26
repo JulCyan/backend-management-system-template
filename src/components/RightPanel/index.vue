@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
-import { SettingsModule } from '@/plugins/store/modules/settings'
+import { SettingsModule } from '@/plugins/store/modules'
 
 @Component({
   name: 'RightPanel'

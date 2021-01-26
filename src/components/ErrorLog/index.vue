@@ -76,7 +76,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { ErrorLogModule } from '@/plugins/store/modules/error-log'
+import { ErrorLogModule } from '@/plugins/store/modules'
 
 @Component({
   name: 'ErrorLog'

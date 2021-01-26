@@ -135,7 +135,7 @@
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
 import { MixinBase } from '@/mixins'
-import { UserModule } from '@/plugins/store/modules/user'
+import { UserModule } from '@/plugins/store/modules'
 @Component
 export default class HeaderDefault extends Mixins(MixinBase) {
   private async logout() {

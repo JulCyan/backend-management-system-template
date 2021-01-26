@@ -56,10 +56,8 @@
 import path from 'path'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { RouteConfig } from 'vue-router'
-import { AppModule } from '@/plugins/store/modules/app'
-import { TagsViewModule, ITagView } from '@/plugins/store/modules/tags-view'
+import { TagsViewModule, ITagView, PermissionModule } from '@/plugins/store/modules'
 import ScrollPane from './ScrollPane.vue'
-import { PermissionModule } from '@/plugins/store/modules/permission'
 
 @Component({
   name: 'TagsView',

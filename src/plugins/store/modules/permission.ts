@@ -1,5 +1,5 @@
 import { asyncAddRoutes, WhiteRoutes } from '@/plugins/router'
-import { UserModule } from '@/plugins/store/modules/user'
+import { UserModule } from '@/plugins/store/modules'
 import { RouteConfig } from 'vue-router/types'
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
 import { Utils } from '@/plugins/utils'

@@ -110,7 +110,6 @@ describe('ESNext method catchNull', () => {
       })
 
       describe('1.2)中间某一个键空值', () => {
-
         it('①空键值为 Null', () => {
           resource = [1, [2, 2, { name: null }]]
           expect(method(resource, '[1][2].name.firstName', 'Jack')).toBe('Jack')
@@ -132,7 +131,6 @@ describe('ESNext method catchNull', () => {
       })
 
       describe('1.2)中间某一个键空值', () => {
-
         it('①空键值为 Null', () => {
           resource = { detail: { name: [1, 2, null] } }
           expect(method(resource, 'detail.name[2].firstName', 'Jack')).toBe('Jack')

@@ -101,11 +101,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { Route } from 'vue-router'
 import { Dictionary } from 'vue-router/types/router'
 import { Form as ElForm, Input } from 'element-ui'
-import { UserModule } from '@/plugins/store/modules/user'
-import { getVerifyCode } from '@/api'
-import { asyncAddRoutes } from '@/plugins/router'
-import { SuccessStatus } from '@/configs/const'
-import { PermissionModule } from '@/plugins/store/modules/permission'
+import { UserModule, PermissionModule } from '@/plugins/store/modules'
 const md5 = require('md5')
 
 @Component({

@@ -28,11 +28,10 @@
 <script lang="ts">
 import { Component } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import { DeviceType, AppModule } from '@/plugins/store/modules/app'
+import { DeviceType, AppModule, SettingsModule } from '@/plugins/store/modules'
 import { AppMain, Navbar, Sidebar, TagsView, Settings } from './components'
 import { RightPanel } from '@/components'
 import ResizeMixin from './mixin/resize'
-import { SettingsModule } from '@/plugins/store/modules/settings'
 
 @Component({
   name: 'Layout',

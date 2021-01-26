@@ -97,8 +97,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { Screenfull, HeaderSearch, ErrorLog } from '@/components'
-import { AppModule } from '@/plugins/store/modules/app'
-import { UserModule } from '@/plugins/store/modules/user'
+import { AppModule, UserModule } from '@/plugins/store/modules'
+
 @Component({
   components: {
     Screenfull,

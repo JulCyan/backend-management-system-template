@@ -6,8 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { UserModule } from '@/plugins/store/modules/user'
-import { PermissionModule } from '@/plugins/store/modules/permission'
+import { UserModule, PermissionModule } from '@/plugins/store/modules'
 import { asyncAddRoutes, LocalRoutes } from './plugins/router'
 
 @Component({

@@ -35,8 +35,8 @@ import path from 'path'
 import Fuse from 'fuse.js' // A lightweight fuzzy-search module
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { RouteConfig } from 'vue-router'
-import { AppModule } from '@/plugins/store/modules/app'
-import { PermissionModule } from '@/plugins/store/modules/permission'
+import { AppModule, PermissionModule } from '@/plugins/store/modules'
+
 import i18n from '@/plugins/lang' // Internationalization
 
 @Component({

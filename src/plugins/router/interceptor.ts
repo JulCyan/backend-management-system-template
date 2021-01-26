@@ -2,7 +2,7 @@ import { router } from '..'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { Route } from 'vue-router'
-import { UserModule } from '@/plugins/store/modules/user'
+import { UserModule } from '@/plugins/store/modules'
 import { _isDev } from '@/configs/const'
 import settings from '@/settings.json'
 
