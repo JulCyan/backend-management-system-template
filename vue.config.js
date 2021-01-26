@@ -41,31 +41,37 @@ const config = {
     name: settings.title,
     workboxPluginMode: 'InjectManifest',
     workboxOptions: {
-      swSrc: path.resolve(__dirname, 'src/pwa/service-worker.js')
+      swSrc: path.resolve(__dirname, 'src/plugins/pwa/index.ts')
     }
   },
   chainWebpack(config) {
     // provide the app's title in html-webpack-plugin's options list so that
     // it can be accessed in index.html to inject the correct title.
     // https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-plugin
-    config.plugin('html').tap(args => {
-      args[0].title = settings.title
-      return args
-    })
+    config
+      .plugin('html')
+      .tap(args => {
+        args[0].title = settings.title
+        return args
+      })
 
     // it can improve the speed of the first screen, it is recommended to turn on preload
-    config.plugin('preload').tap(() => [
-      {
-        rel: 'preload',
-        // to ignore runtime.js
-        // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
-        fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
-        include: 'initial'
-      }
-    ])
+    config
+      .plugin('preload')
+      .tap(() => [
+        {
+          rel: 'preload',
+          // to ignore runtime.js
+          // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
+          fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
+          include: 'initial'
+        }
+      ])
 
     // when there are many pages, it will cause too many meaningless requests
-    config.plugins.delete('prefetch')
+    config
+      .plugins
+      .delete('prefetch')
 
     // https://webpack.js.org/configuration/devtool/#development
     // Change development env source map if you want.
@@ -96,7 +102,7 @@ const config = {
                 commons: {
                   name: 'chunk-commons',
                   test: path.resolve(__dirname, 'src/components'),
-                  minChunks: 3, //  minimum common number
+                  minChunks: 2, // 最低重复使用次数
                   priority: 5,
                   reuseExistingChunk: true
                 }
@@ -106,6 +112,22 @@ const config = {
           config.optimization.runtimeChunk('single')
         }
       )
+
+    // 添加分析工具
+    config
+      .when(process.env.npm_config_report && process.env.NODE_ENV === 'production',
+        config => {
+          config.plugin('webpack-bundle-analyzer')
+            .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+            .end()
+        })
+
+    config.performance
+      .hints('warning')
+      // 入口起点的最大体积
+      .maxEntrypointSize(2 * 1024 * 1024)
+      // 生成文件的最大体积
+      .maxAssetSize(1024 * 1024)
   }
 }
 

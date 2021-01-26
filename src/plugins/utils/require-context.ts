@@ -1,6 +1,6 @@
 // 1. 安装 "@babel/plugin-transform-runtime": "^7.12.10"
 // 2. babel.config.js 配置  sourceType: 'unambiguous'
-// 3. tsconfig.json  配置 "module": "commonjs"
+// TODO: deprecated 3. tsconfig.json  配置 "module": "commonjs"
 // 4. 下面是替换统一出口文件 export * from 'xxx' 代码
 
 // const { requireContext } = require('@/plugins/utils/require-context')
