@@ -2,7 +2,7 @@ const CONFIG = {
   // root 目录
   rootDir: './src',
   // .d.ts 输出目录
-  typesOutDir: './@types',
+  typesOutDir: './types',
   // 默认排除文件
   defaultExcludesFiles: ['index.ts'],
   // 目录来源列表 相对 rootDir
