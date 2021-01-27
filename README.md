@@ -10,18 +10,6 @@ yarn install
 yarn serve
 ```
 
-### DTS file generation service for development
-
-```
-yarn dts-service
-```
-
-### Concurrently to open service for development
-
-```
-yarn concurrently-serve
-```
-
 ### Compiles and minifies for production
 
 ```
@@ -62,10 +50,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
    |── views/                             # 页面
    |── App.vue                            # 入口组件
    |── main.ts                            # 入口文件
+   |── settings.json                      # 默认设置
    └── vm-property.d.ts                   # Vue 实例声明
 |── .env*                                 # 环境变量配置
 |── .eslintrc.js                          # eslint 配置
 |── babel.config.js                       # babel 配置
+|── dts-service.js                        # d.ts 文件生成脚本
+|── gulpfile.js                       	  # gulp task 配置
 |── package.json                          # package.json  
 |── postcss.config.js                     # postcss 配置
 |── tsconfig.json                         # typescript 配置
@@ -91,26 +82,55 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
   - Vuex-Class
 
+
+### Package.json Scripts
+
+
+#### DTS 声明文件自动生成服务
+
+```
+yarn dts-service
+```
+
+#### 并行开启 DTS 和 vue cli service
+
+```
+yarn concurrently-serve
+```
+
+#### 自定义 Element 主题生成
+
+```
+修改 src/styles/_variables.scss 
+yarn et
+```
+
+#### SVG 组件生成脚本
+
+```
+添加或删除 src/icons/components 
+yarn svg
+```
+
 ### Code Lint
 
   - ESlint
+
   - DTS-Service
 
 ### ENV Config
 
   - 对应环境变量配置 在 .env.staging 中
-
   - 本地配置 在 .env.staging.local 中
-
   - 未配置环境变量时, 默认使用 .env
-
   - .env < .env.staging < .env.staging.local
+  - 不同环境开发及编译脚本详见 package.json 中 serve: 及 build:
 
 #### API_URL
 
   - .env* 文件中, VUE_APP_API_URL=后端接口地址
 
-#### DTS-Service
+### DTS-Service
 
 - 监听 API 文件夹下 RequestFunc 变动自动生成对应的 .d.ts 文件 
 
