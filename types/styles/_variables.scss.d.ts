@@ -4,6 +4,7 @@ declare module '*styles/_variables.scss' {
     menuBg: string
     menuText: string
     menuActiveText: string
+    theme: string
   }
 
   export const variables: IScssVariables
