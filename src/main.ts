@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
 import 'normalize.css' // 初始化样式表
-import '@/styles/element-variables.scss' // 自定义element变量样式表
 import '@/styles/index.scss' // 全局样式表
 
 import App from '@/App.vue'

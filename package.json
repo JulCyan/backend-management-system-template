@@ -14,7 +14,8 @@
     "build:prod": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint",
     "test:unit": "jest --clearCache && vue-cli-service test:unit",
-    "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6"
+    "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6",
+    "et": "concurrently \"gulp\" \"et -c ./src/styles/_element-variables.scss -o ./src/assets/theme\""
   },
   "dependencies": {
     "@riophae/vue-treeselect": "^0.4.0",
@@ -64,9 +65,13 @@
     "chokidar": "^3.5.0",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.3",
+    "element-theme": "^2.0.1",
+    "element-theme-chalk": "^2.15.0",
     "eslint": "^6.2.2",
     "eslint-plugin-vue": "^5.2.3",
     "fibers": "^4.0.1",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
     "jest": "^24.9.0",
     "sass": "^1.22.10",
     "sass-loader": "^7.3.1",
