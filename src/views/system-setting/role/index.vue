@@ -25,7 +25,7 @@
         type="primary"
         @click="
           data.dialogFlag = true;
-          data.pageType = pageType.add;
+          data.pageType = _$pageType.add;
         "
       >
         新增
