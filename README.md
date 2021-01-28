@@ -47,15 +47,17 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
         |── index.ts                      # 路由基础配置        
         └── interceptor.ts                # 路由拦截配置
       |── store                           # 状态管理
+   |── styles/                            # 样式
    |── views/                             # 页面
    |── App.vue                            # 入口组件
    |── main.ts                            # 入口文件
-   |── settings.json                      # 默认设置
-   └── vm-property.d.ts                   # Vue 实例声明
+   └── settings.json                      # 默认设置
+|── tests/                                # 测试脚本
+|── types/                                # 声明文件
 |── .env*                                 # 环境变量配置
 |── .eslintrc.js                          # eslint 配置
 |── babel.config.js                       # babel 配置
-|── dts-service.js                        # d.ts 文件生成脚本
+|── dts-service.js                        # .d.ts 文件生成脚本
 |── gulpfile.js                       	  # gulp task 配置
 |── package.json                          # package.json  
 |── postcss.config.js                     # postcss 配置
@@ -102,13 +104,15 @@ yarn concurrently-serve
 
 ```
 修改 src/styles/_variables.scss 
+
 yarn et
 ```
 
 #### SVG 组件生成脚本
 
 ```
-添加或删除 src/icons/components 
+添加或删除 src/icons/svg 
+
 yarn svg
 ```
 
@@ -121,9 +125,13 @@ yarn svg
 ### ENV Config
 
   - 对应环境变量配置 在 .env.staging 中
+
   - 本地配置 在 .env.staging.local 中
+
   - 未配置环境变量时, 默认使用 .env
+
   - .env < .env.staging < .env.staging.local
+  
   - 不同环境开发及编译脚本详见 package.json 中 serve: 及 build:
 
 #### API_URL
