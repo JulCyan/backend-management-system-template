@@ -1,5 +1,15 @@
 export default {
   route: {
+    login: '登录',
+    index: '首页',
+    changePwd: '修改密码',
+    systemSetting: '系统设置',
+    account: '账号管理',
+    role: '角色管理',
+    resource: '资源管理',
+    dict: '字典管理',
+    dictData: '字典数据',
+    // default
     dashboard: '首页',
     documentation: '文档',
     guide: '引导页',
