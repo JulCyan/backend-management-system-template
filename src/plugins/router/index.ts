@@ -29,7 +29,7 @@ export const WhiteRoutes: Array<RouteConfig> = [
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
-    meta: { title: '后台管理系统模板', hidden: true }
+    meta: { title: 'login', hidden: true }
   },
   {
     path: '/404',
@@ -51,13 +51,13 @@ export const WhiteRoutes: Array<RouteConfig> = [
         name: 'index',
         path: '/',
         component: Index,
-        meta: { title: '首页', hidden: true, affix: true }
+        meta: { title: 'index', hidden: true, affix: true }
       },
       {
         name: 'change-pwd',
         path: 'change-pwd',
         component: () => import(/* webpackChunkName: "changePwd" */ '@/views/change-pwd/index.vue'),
-        meta: { title: '修改密码', hidden: true }
+        meta: { title: 'changePwd', hidden: true }
       }
     ]
   }
@@ -70,7 +70,7 @@ export const LocalRoutes: Array<RouteConfig> = [
     component: () => import('@/layout/index.vue'),
     redirect: '/system-setting/account',
     meta: {
-      title: '系统设置',
+      title: 'systemSetting',
       icon: 'el-icon-setting'
     },
     children: [
@@ -79,7 +79,7 @@ export const LocalRoutes: Array<RouteConfig> = [
         path: 'account',
         component: () => import(/* webpackChunkName: "[request]" */ '@/views/system-setting/account/index.vue'),
         meta: {
-          title: '账号管理'
+          title: 'account'
         }
       },
       {
@@ -87,7 +87,7 @@ export const LocalRoutes: Array<RouteConfig> = [
         path: 'role',
         component: () => import(/* webpackChunkName: "[request]" */ '@/views/system-setting/role/index.vue'),
         meta: {
-          title: '角色管理'
+          title: 'role'
         }
       },
       {
@@ -95,7 +95,7 @@ export const LocalRoutes: Array<RouteConfig> = [
         path: 'resource',
         component: () => import(/* webpackChunkName: "[request]" */ '@/views/system-setting/resource/index.vue'),
         meta: {
-          title: '资源管理'
+          title: 'resource'
         }
       },
       {
@@ -103,7 +103,7 @@ export const LocalRoutes: Array<RouteConfig> = [
         path: 'dict',
         component: () => import(/* webpackChunkName: "[request]" */ '@/views/system-setting/dict/index.vue'),
         meta: {
-          title: '字典管理'
+          title: 'dict'
         }
       },
       {
@@ -111,7 +111,7 @@ export const LocalRoutes: Array<RouteConfig> = [
         path: 'dict/data',
         component: () => import(/* webpackChunkName: "[request]" */ '@/views/system-setting/dict/data.vue'),
         meta: {
-          title: '字典数据',
+          title: 'dictData',
           hidden: true
         }
       }

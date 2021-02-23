@@ -1,10 +1,10 @@
 import { _isDev } from '@/configs/const/env'
-import { UserModule } from '@/plugins/store/modules'
+import { AppModule, UserModule } from '@/plugins/store/modules'
 import { SuccessStatus, ServerErrorStatus, UnauthorizedStatus } from '@/configs/const'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { notification as Notification } from '../notification'
 import settings from '@/settings.json'
-const baseURL = settings.enableProxy ? '' : process.env.VUE_APP_API_URL + process.env.VUE_APP_PREFIX
+const baseURL = settings.enableProxy ? process.env.VUE_APP_PREFIX : AppModule.baseURL
 
 export const instance = axios.create({
   baseURL,

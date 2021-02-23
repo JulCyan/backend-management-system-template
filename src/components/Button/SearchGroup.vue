@@ -32,10 +32,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
 import { EXButton } from '@/components'
-import { ElForm } from 'element-ui/types/form'
-import { Override } from '@/plugins'
 @Component({
   components: {
     EXButton

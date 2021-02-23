@@ -1,5 +1,15 @@
 export default {
   route: {
+    login: 'Login',
+    index: 'Home',
+    changePwd: 'Change Password',
+    systemSetting: 'System Setting',
+    account: 'Account',
+    role: 'Role',
+    resource: 'Resource',
+    dict: 'Dict',
+    dictData: 'Dict Data',
+    // default
     dashboard: 'Dashboard',
     documentation: 'Documentation',
     guide: 'Guide',

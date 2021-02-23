@@ -79,7 +79,6 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { EXPagination } from '..'
 import TableComplex from './TableComplex.vue'
-import { log } from 'console'
 export type TableColumn = {
   minWidth: string;
   label: string;

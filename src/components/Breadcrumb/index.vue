@@ -9,13 +9,17 @@
         :key="item.path"
       >
         <span
-          v-if="item.redirect === 'noredirect' || index === breadcrumbs.length-1"
+          v-if="
+            item.redirect === 'noredirect' || index === breadcrumbs.length - 1
+          "
           class="no-redirect"
-        >{{ item.meta.breadcrumb ||item.meta.title }}</span>
+        >{{ breadcrumbGetter(item) }}</span>
         <a
           v-else
           @click.prevent="handleLink(item)"
-        >{{ item.meta.breadcrumb ||item.meta.title }}</a>
+        >{{
+          breadcrumbGetter(item)
+        }}</a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
@@ -25,7 +29,7 @@
 import pathToRegexp from 'path-to-regexp'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { RouteRecord, Route } from 'vue-router'
-
+import i18n from '@/plugins/lang' // Internationalization
 @Component({
   name: 'Breadcrumb'
 })
@@ -47,7 +51,7 @@ export default class extends Vue {
 
   private getBreadcrumb() {
     let matched = this.$route.matched.filter(
-      item => item.meta && item.meta.title
+      (item) => item.meta && i18n.t(`route.${item.meta.title}`).toString()
     )
     const first = matched[0]
     // if (!this.isDashboard(first)) {
@@ -55,8 +59,13 @@ export default class extends Vue {
     //     { path: '/dashboard', meta: { title: 'Dashboard' } } as RouteRecord
     //   ].concat(matched)
     // }
-    this.breadcrumbs = matched.filter(item => {
-      return item.meta && (item.meta.breadcrumb || item.meta.title) && item.meta.useBreadcrumb !== false
+    this.breadcrumbs = matched.filter((item) => {
+      return (
+        item.meta &&
+        (item.meta.breadcrumb ||
+          i18n.t(`route.${item.meta.title}`).toString()) &&
+        item.meta.useBreadcrumb !== false
+      )
     })
   }
 
@@ -79,6 +88,15 @@ export default class extends Vue {
       return
     }
     this.$router.push(this.pathCompile(path))
+  }
+
+  protected breadcrumbGetter(item) {
+    let result = ''
+    result =
+      i18n.t(`${item.meta.breadcrumb}`) != 'undefined'
+        ? i18n.t(`${item.meta.breadcrumb}`).toString()
+        : i18n.t(`route.${item.meta.title}`).toString()
+    return result
   }
 }
 </script>

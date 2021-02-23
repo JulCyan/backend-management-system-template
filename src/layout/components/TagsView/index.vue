@@ -19,7 +19,7 @@
         @click.middle.native="!isAffix(tag)?closeSelectedTag(tag):''"
         @contextmenu.prevent.native="openMenu(tag, $event)"
       >
-        {{ tag.meta.title }}
+        {{ $t(`route.${tag.meta.title}`) }}
         <span
           v-if="!isAffix(tag)"
           class="el-icon-close"
@@ -39,8 +39,7 @@
         v-if="!isAffix(selectedTag)"
         @click="closeSelectedTag(selectedTag)"
       >
-        {{
-          $t('tagsView.close') }}
+        {{ $t('tagsView.close') }}
       </li>
       <li @click="closeOthersTags">
         {{ $t('tagsView.closeOthers') }}
@@ -307,9 +306,9 @@ export default class extends Vue {
       }
 
       &.active {
-        background-color: #42b983;
+        background-color: $primary;
         color: #fff;
-        border-color: #42b983;
+        border-color: $primary;
 
         &::before {
           content: '';

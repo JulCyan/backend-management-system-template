@@ -40,7 +40,7 @@ export const getLocale = () => {
     }
   }
 
-  // Default language is english
+  // Default language is Chinese
   return 'zh'
 }
 
