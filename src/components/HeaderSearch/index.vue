@@ -37,7 +37,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { RouteConfig } from 'vue-router'
 import { AppModule, PermissionModule } from '@/plugins/store/modules'
 
-import i18n from '@/plugins/lang' // Internationalization
+import i18n, { getRouteTitle } from '@/plugins/lang' // Internationalization
 
 @Component({
   name: 'HeaderSearch'
@@ -146,7 +146,7 @@ export default class extends Vue {
 
       if (router.meta && router.meta.title) {
         // generate internationalized title
-        const i18ntitle = i18n.t(`route.${router.meta.title}`).toString()
+        const i18ntitle = getRouteTitle(router)
         data.meta.title = [...data.meta.title, i18ntitle]
         if (router.redirect !== 'noRedirect') {
           // only push the routes with title

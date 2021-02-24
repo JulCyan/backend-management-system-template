@@ -10,6 +10,7 @@ import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'
 // User defined lang
 import enLocale from './en'
 import zhLocale from './zh'
+import { RouteConfig } from 'vue-router'
 
 Vue.use(VueI18n)
 
@@ -50,3 +51,11 @@ const i18n = new VueI18n({
 })
 
 export default i18n
+
+export const getRouteTitle = (route) => {
+  let result =
+    i18n.t(`route.${route.meta.title}`) !== 'undefined'
+      ? i18n.t(`route.${route.meta.title}`).toString()
+      : undefined
+  return result
+}
