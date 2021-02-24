@@ -5,6 +5,8 @@ import { Route } from 'vue-router'
 import { UserModule } from '@/plugins/store/modules'
 import { _isDev } from '@/configs/const'
 import settings from '@/settings.json'
+import { i18n } from '@/plugins'
+import { getRouteTitle } from '../lang'
 
 NProgress.configure({ showSpinner: false })
 
@@ -42,5 +44,5 @@ router.beforeEach(async(to: Route, _: Route, next: any) => {
 
 router.afterEach((to: Route) => {
   NProgress.done()
-  document.title = getPageTitle(to.meta.title)
+  document.title = getPageTitle(getRouteTitle(to))
 })

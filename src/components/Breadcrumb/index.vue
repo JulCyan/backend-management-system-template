@@ -29,7 +29,7 @@
 import pathToRegexp from 'path-to-regexp'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { RouteRecord, Route } from 'vue-router'
-import i18n from '@/plugins/lang' // Internationalization
+import i18n, { getRouteTitle } from '@/plugins/lang' // Internationalization
 @Component({
   name: 'Breadcrumb'
 })
@@ -51,19 +51,19 @@ export default class extends Vue {
 
   private getBreadcrumb() {
     let matched = this.$route.matched.filter(
-      (item) => item.meta && i18n.t(`route.${item.meta.title}`).toString()
+      (item) => item.meta && getRouteTitle(item)
     )
-    const first = matched[0]
+    // const first = matched[0]
     // if (!this.isDashboard(first)) {
     //   matched = [
     //     { path: '/dashboard', meta: { title: 'Dashboard' } } as RouteRecord
     //   ].concat(matched)
     // }
+
     this.breadcrumbs = matched.filter((item) => {
       return (
         item.meta &&
-        (item.meta.breadcrumb ||
-          i18n.t(`route.${item.meta.title}`).toString()) &&
+        (item.meta.breadcrumb || item.meta.title) &&
         item.meta.useBreadcrumb !== false
       )
     })
@@ -95,7 +95,7 @@ export default class extends Vue {
     result =
       i18n.t(`${item.meta.breadcrumb}`) != 'undefined'
         ? i18n.t(`${item.meta.breadcrumb}`).toString()
-        : i18n.t(`route.${item.meta.title}`).toString()
+        : getRouteTitle(item)
     return result
   }
 }
