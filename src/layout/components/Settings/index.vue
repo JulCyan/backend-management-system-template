@@ -2,7 +2,7 @@
   <div class="drawer-container">
     <div>
       <h3 class="drawer-title">
-        {{ $t('settings.title') }}
+        {{ $t('settings.desc') }}
       </h3>
 
       <div class="drawer-item">

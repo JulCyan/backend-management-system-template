@@ -1,7 +1,7 @@
 /* Variables */
 
 // Base color
-$primary: #5ea953;
+$primary: var(--theme, #5ea953);
 $primaryOpacity: #eff6ed;
 $blue: #324157;
 $light-blue: #3a71a8;
