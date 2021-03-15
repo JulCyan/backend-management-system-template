@@ -176,7 +176,7 @@ export default {
     closeAll: 'Close All'
   },
   settings: {
-    title: 'Page style setting',
+    desc: 'Page style setting',
     theme: 'Theme Color',
     showTagsView: 'Open Tags-View',
     showSidebarLogo: 'Sidebar Logo',

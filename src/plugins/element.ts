@@ -27,7 +27,8 @@ import {
   DatePicker,
   InputNumber,
   Tree,
-  Scrollbar
+  Scrollbar,
+  Message
 } from 'element-ui'
 import { i18n } from '@/plugins'
 export default {
@@ -36,7 +37,8 @@ export default {
       size: 'small',
       zIndex: 3000,
       i18n: (key: string, value: string) => i18n.t(key, value)
-    };
+    }
+    Vue.prototype.$message = Message;
     [
       Button,
       Breadcrumb,

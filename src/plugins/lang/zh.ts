@@ -177,7 +177,7 @@ export default {
     closeAll: '关闭所有'
   },
   settings: {
-    title: '系统布局配置',
+    desc: '系统布局配置',
     theme: '主题色',
     showTagsView: '显示 Tags-View',
     showSidebarLogo: '显示侧边栏 Logo',
