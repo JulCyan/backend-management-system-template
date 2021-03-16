@@ -6,9 +6,9 @@ import { IUserState } from './modules/user'
 Vue.use(Vuex)
 
 export interface IRootState {
-  app: IAppState
-  user: IUserState
-  permission: IPermissionState
+  app: IAppState;
+  user: IUserState;
+  permission: IPermissionState;
 }
 
 // Declare empty store first, dynamically register all modules later.

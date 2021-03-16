@@ -2,12 +2,12 @@ module.exports = {
   presets: [
     '@vue/app'
   ],
-  'plugins': [
+  plugins: [
     [
       'component',
       {
-        'libraryName': 'element-ui',
-        'styleLibraryName': '~src/assets/theme'
+        libraryName: 'element-ui',
+        styleLibraryName: '~src/assets/theme'
       }
     ]
   ],

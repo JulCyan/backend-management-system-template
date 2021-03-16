@@ -136,6 +136,7 @@ export default class Role extends Mixins(MixinForm) {
       ]
     }
   };
+
   protected created() {
     this.init()
     this.getPermissionList()
@@ -202,8 +203,8 @@ export default class Role extends Mixins(MixinForm) {
   }
 
   protected sent() {
-    let requestConfig = this.ISADD ? roleAdd : roleEdit
-    let perButtonIds = (this.$refs.tree as Tree).getCheckedKeys(true)
+    const requestConfig = this.ISADD ? roleAdd : roleEdit
+    const perButtonIds = (this.$refs.tree as Tree).getCheckedKeys(true)
     this.data = {
       ...this.data,
       insertForm: {

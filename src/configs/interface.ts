@@ -4,25 +4,25 @@ export interface IFormValidate {
 }
 
 export interface IValidateKeys {
-    formKey: string
-    beginKey: string
-    endKey: string
-    limitDays?: number
+    formKey: string;
+    beginKey: string;
+    endKey: string;
+    limitDays?: number;
 }
 
 export interface IDirectiveBinding {
-    arg: string
-    value: number | Array<number>
-    name: string
-    rawName: string
-    modifiers: any
-    [propName: string]: any
+    arg: string;
+    value: number | Array<number>;
+    name: string;
+    rawName: string;
+    modifiers: any;
+    [propName: string]: any;
 }
 
 // 重写 AxiosResponse
 export interface IExtentionAxiosResponse<T> extends AxiosResponse<T> {
-    code: number
-    message: string
-    state: boolean
+    code: number;
+    message: string;
+    state: boolean;
 }
-export interface IExtentionAxiosPromise<T = any> extends Promise<IExtentionAxiosResponse<T>> {}
+export type IExtentionAxiosPromise<T = any> = Promise<IExtentionAxiosResponse<T>>

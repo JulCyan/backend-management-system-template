@@ -113,6 +113,7 @@ export default class extends Vue {
     pwd: '',
     verifyCode: ''
   };
+
   private loginRules = {
     accountName: [
       { required: true, trigger: 'change', message: '用户名不能为空' }
@@ -122,6 +123,7 @@ export default class extends Vue {
       { required: true, trigger: 'change', message: '验证码不能为空' }
     ]
   };
+
   private passwordType = 'password';
   private loading = false;
   private showDialog = false;
@@ -204,7 +206,7 @@ export default class extends Vue {
 
   get verifyCodeImage() {
     this.$nextTick(() => {
-      (this.$refs['loginForm'] as ElForm).clearValidate('verifyCode')
+      (this.$refs.loginForm as ElForm).clearValidate('verifyCode')
     })
     return UserModule.verifyCodeImage
   }

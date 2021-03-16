@@ -14,9 +14,9 @@ export const haveRolesPermission = (binding: any): boolean => {
   // 获取用户权限合集
   const controlSum = getRolesSum()
   // 拆分用户权限
-  let controlList = PermissionDirective.turnToBinaryPermissionSum(controlSum)
+  const controlList = PermissionDirective.turnToBinaryPermissionSum(controlSum)
   // 特殊处理: 去除人员权限
-  let empIndex = controlList.findIndex(item => item === UserType.emp)
+  const empIndex = controlList.findIndex(item => item === UserType.emp)
   empIndex !== -1 && controlList.splice(empIndex, 1)
   // 找到拥有权限的一项
   // eslint-disable-next-line no-return-assign
@@ -28,7 +28,7 @@ export const haveRolesPermission = (binding: any): boolean => {
 export default {
   // 当被绑定的元素插入到 DOM 中时……
   inserted: function(el: any, binding: any) {
-    let showFlag = haveRolesPermission(binding)
+    const showFlag = haveRolesPermission(binding)
     !showFlag && el.parentNode.removeChild(el)
   }
 }

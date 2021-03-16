@@ -6,9 +6,9 @@ import store from '@/plugins/store'
 import { Utils } from '@/plugins/utils'
 
 export interface IUserState {
-  token: string
-  userInfo: any,
-  verifyCodeImage: any
+  token: string;
+  userInfo: any;
+  verifyCodeImage: any;
 }
 
 @Module({ dynamic: true, store, name: 'user' })
@@ -43,7 +43,7 @@ class User extends VuexModule implements IUserState {
   }
 
   @Action
-  public async Login(submitForm: { accountName: string, pwd: string, verifyCode: string }) {
+  public async Login(submitForm: { accountName: string; pwd: string; verifyCode: string }) {
     let { accountName } = submitForm
     accountName = accountName.trim()
     const { data, code }: any = await instance(login({ ...submitForm, accountName }))

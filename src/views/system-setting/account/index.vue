@@ -165,6 +165,7 @@ export default class Account extends Mixins(MixinForm) {
     dialogFlag: false,
     pageType: null
   };
+
   protected created() {
     this.init()
     this.getList = this._$generateGetList(accountList)
@@ -245,7 +246,7 @@ export default class Account extends Mixins(MixinForm) {
   }
 
   protected sent() {
-    let requestConfig = this.ISADD ? accountAdd : accountEdit
+    const requestConfig = this.ISADD ? accountAdd : accountEdit
     return this.$axios(requestConfig(this.data.insertForm))
     // return Promise.resolve('success')
   }

@@ -40,7 +40,7 @@ export default class EXButton extends Vue {
 
   protected autoUnfreezeTime: number = 10 * 1000;
   protected throttleTime: number = 0.3 * 1000;
-  protected disabledFlag: boolean = false;
+  protected disabledFlag = false;
   protected attributes: any = {
     type: 'primary',
     size: 'small',

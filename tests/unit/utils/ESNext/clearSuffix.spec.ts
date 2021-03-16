@@ -1,7 +1,7 @@
 import { ESNext } from '../../../../src/plugins/utils'
 describe('ESNext method clearSuffix', () => {
   const method = new ESNext().clearSuffix
-  let resource: string = 'cyan.png'
+  let resource = 'cyan.png'
   it('①正常后缀', () => {
     expect(method(resource)).toBe('cyan')
   })

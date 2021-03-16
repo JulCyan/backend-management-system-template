@@ -90,7 +90,7 @@ export default class EXPagination extends Vue {
 
   protected created() {
     if (this.$route.query.useQueryParams == '1') {
-      let preQuery = this.$utils.copy(this.$route.query)
+      const preQuery = this.$utils.copy(this.$route.query)
       delete preQuery.useQueryParams
       this.queryParams = preQuery
     }

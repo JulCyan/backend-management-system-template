@@ -1,11 +1,11 @@
-import { router } from '..'
+import { router, i18n } from '..'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { Route } from 'vue-router'
 import { UserModule } from '@/plugins/store/modules'
 import { _isDev } from '@/configs/const'
 import settings from '@/settings.json'
-import { i18n } from '@/plugins'
+
 import { getRouteTitle } from '../lang'
 
 NProgress.configure({ showSpinner: false })

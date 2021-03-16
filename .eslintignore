@@ -1,3 +1,5 @@
 dist/*.js
 src/assets
 tests/unit/coverage
+**/require-context.ts
+**/dts-service.js

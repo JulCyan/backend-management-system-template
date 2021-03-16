@@ -36,7 +36,7 @@
         :fixed="getFixed(tableColum)"
         :min-width="getMinWidth(tableColum)"
       >
-        <template #default="{ row }">
+        <template #default="{row}">
           <div v-if="tableColum.type === tableColumnType.buttons">
             <el-button
               v-for="(button, i) in tableColum.buttons"
@@ -134,7 +134,8 @@ export default class EXTable extends Vue {
       TableWOne: '80px',
       TableWSeven: '300px',
       TableWSix: '250px',
-      TableWThree: '120px'
+      TableWThree: '120px',
+      TableWTwo: '100px'
     }
   }
 
@@ -145,14 +146,15 @@ export default class EXTable extends Vue {
   protected getMinWidth(tableColum) {
     let result = ''
     if (tableColum.type === TableColumnType.date) {
-      result = this.variables['TableWDate']
+      result = this.variables.TableWDate
     } else if (tableColum.type === TableColumnType.dateAbout) {
-      result = this.variables['TableWTwo']
+      result = this.variables.TableWTwo
     } else {
       result = this.variables[tableColum.minWidth]
     }
     return result
   }
+
   protected getFixed(tableColum) {
     let result: string | true = ''
     if (tableColum.type === TableColumnType.buttons) {
@@ -178,7 +180,7 @@ export default class EXTable extends Vue {
   }
 
   public getIndex(index) {
-    let getIndex = (this.$parent as TableComplex).getIndex
+    const getIndex = (this.$parent as TableComplex).getIndex
     return getIndex ? getIndex(index) : index + 1
   }
 

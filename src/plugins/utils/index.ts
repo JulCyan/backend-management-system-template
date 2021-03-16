@@ -10,13 +10,14 @@ export class StorageOperation {
   constructor(configs?: utilsConfigs) {
     this.cookies = configs && configs.cookies
   }
+
   /**
    * 设置本地缓存
    * @param { key: str , val: any }
    * @retunrs true: bool
    */
-  public setS<T>({ key, val }: { key: string, val: T }): string {
-    let result: string = JSON.stringify(val)
+  public setS<T>({ key, val }: { key: string; val: T }): string {
+    const result: string = JSON.stringify(val)
     sessionStorage.setItem(key, result)
     return result
   }
@@ -26,7 +27,7 @@ export class StorageOperation {
    * @param key
    * @retunrs *: any
    */
-  public getS(key: string = ''): string | object {
+  public getS(key = ''): string | object {
     let result = sessionStorage.getItem(key) || ''
     try {
       result = JSON.parse(result)
@@ -41,7 +42,7 @@ export class StorageOperation {
    * @param key
    * @returns {}
    */
-  public removeS(key: string = '') {
+  public removeS(key = '') {
     sessionStorage.removeItem(key)
     return this
   }
@@ -76,6 +77,7 @@ export class NumberOperation extends StorageOperation {
   constructor(configs?: utilsConfigs) {
     super(configs)
   }
+
   /**
      * 格式化数据
      * @param { val : string }
@@ -88,9 +90,9 @@ export class NumberOperation extends StorageOperation {
 
   // 将数字保留两位小数
   public tostr2(val: BaseNS): BaseNS {
-    let isNumber = this.isNumber(val)
+    const isNumber = this.isNumber(val)
     if (val && isNumber) {
-      let tempVal = Number(val)
+      const tempVal = Number(val)
       return tempVal.toFixed(2)
     } else {
       return val
@@ -99,7 +101,7 @@ export class NumberOperation extends StorageOperation {
 
   // 将数字过滤为每三位逗号间隔并保留两位小数
   public tostr32(val: BaseNS) {
-    let tempVal = Number(val)
+    const tempVal = Number(val)
     return tempVal.toFixed(2).replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,')
   }
 
@@ -107,7 +109,7 @@ export class NumberOperation extends StorageOperation {
     * 隐藏手机中间/后四位
     */
   public phoneHide(tel: BaseNS, type: string) {
-    let tempTel = String(tel)
+    const tempTel = String(tel)
     let phone
     if (type == 'mid') {
       phone = tempTel.replace(tempTel.substring(3, 7), '****')
@@ -127,6 +129,7 @@ export class ESNext extends NumberOperation {
   constructor(configs?: utilsConfigs) {
     super(configs)
   }
+
   /**
     * 数组根据数组对象中的某个属性值进行排序的方法
     * 使用例子：newArray.sort(sortBy('number',false)) //表示根据number属性降序排列;若第二个参数不传递，默认表示升序排序
@@ -168,15 +171,15 @@ export class ESNext extends NumberOperation {
         // 键判断是否包含[index]
         if (keys[i].indexOf('[') > -1) {
           // 处理键中有[index]的情况
-          let [specialKey]: Array<BaseNS> = keys[i].split('[')
-          let strArr: Array<string> = keys[i].split('[')
+          const [specialKey]: Array<BaseNS> = keys[i].split('[')
+          const strArr: Array<string> = keys[i].split('[')
           strArr.shift()
           // 添加 next keys 是否为纯属组的判断
           let tempCurrent: any = specialKey ? root[specialKey] : root
-          let normalGetTimes: number = 0 // 是否正常完成[index]循环
+          let normalGetTimes = 0 // 是否正常完成[index]循环
 
           for (let g = 0; g < strArr.length; g++) {
-            let [index]: Array<BaseNS> = strArr[g].split(']')
+            const [index]: Array<BaseNS> = strArr[g].split(']')
             if (tempCurrent) {
               tempCurrent = tempCurrent[index]
               normalGetTimes++
@@ -208,7 +211,7 @@ export class ESNext extends NumberOperation {
     * @param str
     */
   public clearSuffix(str: string): string {
-    let newStr: string = ''
+    let newStr = ''
     if (str.split('').reverse().join('').indexOf('.') !== -1) {
       // @ts-ignore
       newStr = str.split('').reverse().join('').split('.').pop().split('').reverse().join('')
@@ -254,7 +257,7 @@ export class ESNext extends NumberOperation {
     let timer: any
     let previous = new Date(0).getTime()
     const _throttle = (...args: []) => {
-      let now = new Date().getTime()
+      const now = new Date().getTime()
       if (!option.leading) {
         if (timer) return
         timer = setTimeout(() => {
@@ -366,7 +369,7 @@ export class ESNext extends NumberOperation {
     return JSON.stringify(obj1) === JSON.stringify(obj2)
   }
 
-  public sleep(time: number = 1): Promise<any> {
+  public sleep(time = 1): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve('200 OK')
@@ -390,7 +393,7 @@ export class ESNext extends NumberOperation {
    * @param resource
    * @returns Array<T>
    */
-  public removeDuplicates<T>(resource: Array<T>, useKey: string = 'id'): Array<T> {
+  public removeDuplicates<T>(resource: Array<T>, useKey = 'id'): Array<T> {
     if (resource.length === 0) {
       return resource
     }
@@ -402,7 +405,7 @@ export class ESNext extends NumberOperation {
       return resource
     }
     return resource.filter((item: any) => {
-      let index = keys.indexOf(item[useKey])
+      const index = keys.indexOf(item[useKey])
       if (index != -1) {
         keys.splice(index, 1)
         return true
@@ -416,7 +419,7 @@ export class ESNext extends NumberOperation {
      * 递归获取选中菜单的id
      * @type {Array}
      */
-  public recursionGetTreeIds(resource: Array<any>, key: string = 'id', children: string = 'sonNode') {
+  public recursionGetTreeIds(resource: Array<any>, key = 'id', children = 'sonNode') {
     let Ids = []
     if (resource.length > 0) {
       for (let i = 0; i < resource.length; i++) {
@@ -429,7 +432,7 @@ export class ESNext extends NumberOperation {
     return Ids
   }
 
-  public recursionGetTreeLeafIds(resource: Array<any>, key: string = 'id', children: string = 'sonNode') {
+  public recursionGetTreeLeafIds(resource: Array<any>, key = 'id', children = 'sonNode') {
     let Ids = []
     if (resource.length > 0) {
       for (let i = 0; i < resource.length; i++) {
@@ -443,15 +446,15 @@ export class ESNext extends NumberOperation {
     return Ids
   }
 
-  public recursionGetTreeItemById(resource: Array<any>, value: BaseNS, key: string = 'meta.key', children: string = 'children') {
+  public recursionGetTreeItemById(resource: Array<any>, value: BaseNS, key = 'meta.key', children = 'children') {
     let result = null
     for (let i = 0; i < (resource && resource.length || 0); i++) {
-      let item = resource[i]
+      const item = resource[i]
       if (this.catchNull(item, key, '') == value) {
         result = item
         break
       }
-      if (item[children] && item[children]['length'] !== 0) {
+      if (item[children] && item[children].length !== 0) {
         result = this.recursionGetTreeItemById(item[children], value)
         if (result) {
           break
@@ -461,10 +464,10 @@ export class ESNext extends NumberOperation {
     return result
   }
 
-  public recursionGetTreeMap(resource: Array<any>, key: string = 'meta.key', value: string = 'path', children: string = 'children') {
+  public recursionGetTreeMap(resource: Array<any>, key = 'meta.key', value = 'path', children = 'children') {
     let result = {}
     for (let i = 0; i < resource.length; i++) {
-      let item = resource[i]
+      const item = resource[i]
       result[this.catchNull(item, key, '')] = item[value]
       if (item[children]) {
         result = { ...result, ...this.recursionGetTreeMap(item[children]) }
@@ -473,15 +476,15 @@ export class ESNext extends NumberOperation {
     return result
   }
 
-  public arrayBufferToBase64(buffer, type: string = 'image/png') {
+  public arrayBufferToBase64(buffer, type = 'image/png') {
     return `data:${type};base64,${window.btoa(String.fromCharCode(...new Uint8Array(buffer)))}`
   }
 
-  public arrayBufferToExcel(buffer, fileName: string = 'fileName') {
-    var uInt8Array = new Uint8Array(buffer) // 先将返回的二进制数组转化为js的二进制数组
-    let blob = new Blob([uInt8Array], { type: 'application/vnd.ms-excel' })// 然后创建blob对象，文件类型设置为excel的类型
-    let blobURL = window.URL.createObjectURL(blob)// 然后创建一个可访问的URL
-    let tempLink = document.createElement('a')// 创建a标签去下载
+  public arrayBufferToExcel(buffer, fileName = 'fileName') {
+    const uInt8Array = new Uint8Array(buffer) // 先将返回的二进制数组转化为js的二进制数组
+    const blob = new Blob([uInt8Array], { type: 'application/vnd.ms-excel' })// 然后创建blob对象，文件类型设置为excel的类型
+    const blobURL = window.URL.createObjectURL(blob)// 然后创建一个可访问的URL
+    const tempLink = document.createElement('a')// 创建a标签去下载
     tempLink.style.display = 'none'
     tempLink.href = blobURL
     tempLink.setAttribute('download', fileName)
@@ -495,9 +498,9 @@ export class ESNext extends NumberOperation {
   }
 
   public arrayBufferToJSON(buffer): string {
-    var uInt8Array = new Uint8Array(buffer)
-    var out, i, len, c
-    var char2, char3
+    const uInt8Array = new Uint8Array(buffer)
+    let out, i, len, c
+    let char2, char3
 
     out = ''
     len = uInt8Array.length
@@ -537,8 +540,9 @@ export class DOMOperation extends ESNext {
   constructor(configs?: utilsConfigs) {
     super(configs)
   }
+
   // 页面平滑滚动
-  public scrollTop(number = 0, time: number = 0) {
+  public scrollTop(number = 0, time = 0) {
     if (!time) {
       document.body.scrollTop = document.documentElement.scrollTop = number
       return number
@@ -546,8 +550,8 @@ export class DOMOperation extends ESNext {
     const spacingTime = 20 // 设置循环的间隔时间  值越小消耗性能越高
     let spacingInex = time / spacingTime // 计算循环的次数
     let nowTop = document.body.scrollTop + document.documentElement.scrollTop // 获取当前滚动条位置
-    let everTop = (number - nowTop) / spacingInex // 计算每次滑动的距离
-    let scrollTimer = setInterval(() => {
+    const everTop = (number - nowTop) / spacingInex // 计算每次滑动的距离
+    const scrollTimer = setInterval(() => {
       if (spacingInex > 0) {
         spacingInex--
         this.scrollTop((nowTop += everTop))
@@ -557,7 +561,7 @@ export class DOMOperation extends ESNext {
     }, spacingTime)
   }
 
-  public getOffsetByBody(el: any, attr: string = 'offsetLeft'): number {
+  public getOffsetByBody(el: any, attr = 'offsetLeft'): number {
     let offset = 0
     while (el && el.tagName !== 'BODY') {
       offset += el[attr]
@@ -566,7 +570,7 @@ export class DOMOperation extends ESNext {
     return offset
   }
 
-  public getDOMDeep(ele: string = 'body'): number {
+  public getDOMDeep(ele = 'body'): number {
     // @ts-ignore
     const getDepth = node => {
       if (!node.children || node.children.length === 0) {
@@ -649,7 +653,7 @@ export class RouterOperation extends DOMOperation {
   public generateAsyncRoutes<T>(routes: Array<T>): Array<T> {
     let resultRoutes = []
     resultRoutes = routes.map((item: any) => {
-      let newItem: any = {
+      const newItem: any = {
         ...item,
         component: item.component ? () => import(/* webpackChunkName: "[request]" */ `@/views/${item.component}.vue`) : null
       }
@@ -661,19 +665,19 @@ export class RouterOperation extends DOMOperation {
   }
 
   public resolveNewTab(route: RawLocation, router?: VueRouter, target = '_blank'): void {
-    let operation = this.router || router
-    let resultRoute = route
+    const operation = this.router || router
+    const resultRoute = route
     // @ts-ignore
     // '1' 为使用, '0' 为禁用
     resultRoute.query.useQueryParams = '1'
 
-    let { href } = operation.resolve(route)
+    const { href } = operation.resolve(route)
     window.open(href, target)
   }
 }
 
 export class DateOperation extends RouterOperation {
-  public formatDate(time: BaseNS, formatValue: string = 'YYYY-MM-DD HH:mm:ss'): string {
+  public formatDate(time: BaseNS, formatValue = 'YYYY-MM-DD HH:mm:ss'): string {
     return time && moment(time).format(formatValue)
   }
 }
@@ -682,6 +686,7 @@ export class ProjectSelf extends DateOperation {
   constructor(configs?: utilsConfigs) {
     super(configs)
   }
+
   /**
     * @method ItemCheckedChange
     * @description 列表单项 checked 变化控制 allChecked 值
@@ -691,13 +696,13 @@ export class ProjectSelf extends DateOperation {
     * @param { required, Vue instance } that this
     */
   public ItemCheckedChange({ allKey, itemKey = 'checked', dataKey, that }: any): void {
-    let arr = this.catchNull(that, dataKey, [])
-    let result = arr.reduce((res: number, item: any) => res + item[itemKey], 0)
+    const arr = this.catchNull(that, dataKey, [])
+    const result = arr.reduce((res: number, item: any) => res + item[itemKey], 0)
     that[allKey] = result === arr.length
   }
 
   public exportExcel(response) {
-    let fileName = response.headers['content-disposition'].split(';').find(item => item.indexOf('filename') !== -1).split('filename=')[1]
+    const fileName = response.headers['content-disposition'].split(';').find(item => item.indexOf('filename') !== -1).split('filename=')[1]
     this.arrayBufferToExcel(response.data, fileName)
   }
 }
@@ -722,7 +727,7 @@ export class Directive {
     this.binding = binding
   }
 
-  static constructBinding(value: any, arg: string = '', modifiers: any = {}, name: string = 'permission'): IDirectiveBinding {
+  static constructBinding(value: any, arg = '', modifiers: any = {}, name = 'permission'): IDirectiveBinding {
     return {
       arg,
       modifiers,
@@ -737,7 +742,7 @@ export class PermissionDirective extends Directive {
   public userType: number
   public permissionArgs: any
 
-  constructor(binding: any, userType: number = 0) {
+  constructor(binding: any, userType = 0) {
     super(binding)
     this.userType = userType
     this.permissionArgs = PermissionArgs
@@ -745,9 +750,9 @@ export class PermissionDirective extends Directive {
 
   static turnToBinaryPermissionSum(value: BaseNS): Array<number> {
     // 转为二进制
-    let binary = parseInt(value as string, 10).toString(2).split('').reverse().join('')
+    const binary = parseInt(value as string, 10).toString(2).split('').reverse().join('')
     let multiplier = 1
-    let permissionList = []
+    const permissionList = []
     for (let i = 0; i < binary.length; i++) {
       // 如果位数为 1 则代表有值, 8421 权限控制, 当前位置有值则有当前倍率的权限
       (binary[i] === '1') && permissionList.push(multiplier)
@@ -774,13 +779,13 @@ export class PermissionDirective extends Directive {
 
   public result(userType: number = this.userType): boolean {
     this.userType = userType
-    let {
+    const {
       exact,
       inverse,
       includes,
       excludes
     } = PermissionArgs
-    let result: boolean = true
+    let result = true
 
     switch (this.binding.arg) {
       case exact:
@@ -808,15 +813,15 @@ export class PermissionDirective extends Directive {
 }
 
 export interface recursionSortRoutesParams {
-  resource: any,
-  sortFn?: (...args: any) => number
-  childrenKey?: string
-  filterRoutes?: Array<any>
+  resource: any;
+  sortFn?: (...args: any) => number;
+  childrenKey?: string;
+  filterRoutes?: Array<any>;
 }
 
 export interface utilsConfigs {
-  router?: VueRouter,
-  cookies?: any
+  router?: VueRouter;
+  cookies?: any;
 }
 
 export default {
