@@ -53,7 +53,7 @@ export default class RealTimeData extends Vue {
   private readonly data: any;
 
   get latestUpdateTime(): BaseNS {
-    let { occurTime, latestUpdateTime, lastUpdateTime, toDayLastDate } = this.data
+    const { occurTime, latestUpdateTime, lastUpdateTime, toDayLastDate } = this.data
     return this.data && (occurTime || latestUpdateTime || lastUpdateTime || toDayLastDate)
   }
 }

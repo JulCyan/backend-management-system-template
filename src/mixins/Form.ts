@@ -4,7 +4,7 @@ import { ElForm } from 'element-ui/types/form'
 import { Component, Mixins, Watch } from 'vue-property-decorator'
 import { TableComplex, EXButton, EXSelect, SearchGroup } from '@/components'
 import MixinBase from './Base'
-export type MessageBoxParams = { text: string, title: string, success?: Function, cancel?: Function, final?: Function }
+export type MessageBoxParams = { text: string; title: string; success?: Function; cancel?: Function; final?: Function }
 @Component({
   components: { TableComplex, EXButton, EXSelect, SearchGroup }
 })
@@ -17,7 +17,7 @@ export default class Form extends Mixins(MixinBase) {
     }
   };
 
-  public getList(currentPage: number = 1) { }
+  public getList(currentPage = 1) { }
 
   public _$confirm({ text, title, success, cancel, final }: MessageBoxParams) {
     this.$confirm(text, title, {
@@ -43,7 +43,7 @@ export default class Form extends Mixins(MixinBase) {
   }
 
   public _$generateGetList(api: IRequestFunc) {
-    return (currentPage: number = 1) => {
+    return (currentPage = 1) => {
       this.data.searchForm.pageNum = currentPage
       this.$axios(api(this.data.searchForm)).then((res) => {
         if (SuccessStatus.includes(res.code)) {
@@ -68,7 +68,7 @@ export default class Form extends Mixins(MixinBase) {
     }
   }
 
-  public _$validateForm(func: Function, formName: string = 'insertForm') {
+  public _$validateForm(func: Function, formName = 'insertForm') {
     (this.$refs[formName] as ElForm).validate(valid => {
       if (valid) {
         return func()
@@ -80,9 +80,9 @@ export default class Form extends Mixins(MixinBase) {
     })
   }
 
-  public _$clearValidate(props: Array<string> | string = undefined, formName: string = 'insertForm') {
+  public _$clearValidate(props: Array<string> | string = undefined, formName = 'insertForm') {
     this.$nextTick(() => {
-      let formRef: ElForm = this.$refs[formName] as ElForm
+      const formRef: ElForm = this.$refs[formName] as ElForm
       formRef && (props ? formRef.clearValidate(props) : formRef.clearValidate())
     })
   }
@@ -93,7 +93,7 @@ export default class Form extends Mixins(MixinBase) {
     (this.$refs[formName] as ElForm).validateField(props, callback)
   }
 
-  public _$resetFields(formName: string = 'searchForm') {
+  public _$resetFields(formName = 'searchForm') {
     (this.$refs[formName] as ElForm).resetFields()
   }
 
@@ -112,7 +112,7 @@ export default class Form extends Mixins(MixinBase) {
   }
 
   public _$autoRegistryhookBeforeDestroy(fn) {
-    let randomName = 'hook:beforeDestroy' + Math.random() * 100000
+    const randomName = 'hook:beforeDestroy' + Math.random() * 100000
     window.addEventListener(randomName, fn, false)
     this.$once('hook:beforeDestroy', () => {
       window.removeEventListener(randomName, fn, false)

@@ -78,6 +78,7 @@ export default class PaginationCustom extends Vue {
 
   @Prop({ default: () => [], type: Array })
   private readonly allList!: Array<any>;
+
   private list: Array<any> = [];
 
   private paginationInfo: any = {
@@ -104,17 +105,17 @@ export default class PaginationCustom extends Vue {
   }
 
   public indexMethod(index) {
-    let limitpage = this.syncParams.pageSize || 10
-    let curpage = this.syncParams.currentPage // 单前页码，具体看组件取值
+    const limitpage = this.syncParams.pageSize || 10
+    const curpage = this.syncParams.currentPage // 单前页码，具体看组件取值
     return index + 1 + (curpage - 1) * limitpage
   }
 
   protected structurePaginationInfo(
     length: number = this.allList.length
   ): void {
-    let { currentPage, pageSize } = this.syncParams
+    const { currentPage, pageSize } = this.syncParams
 
-    let lastPage = Math.ceil(length / pageSize)
+    const lastPage = Math.ceil(length / pageSize)
 
     // 构造分页器信息
     this.paginationInfo.isFirstPage = currentPage === 1
@@ -133,7 +134,7 @@ export default class PaginationCustom extends Vue {
     return this.syncParams.currentPage
   }
 
-  public getData(currentPage: number = 1) {
+  public getData(currentPage = 1) {
     this.list = this.allList.slice((currentPage - 1) * 10, currentPage * 10)
     this.afterGetData(this.list)
   }

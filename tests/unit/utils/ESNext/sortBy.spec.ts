@@ -1,7 +1,7 @@
 import { ESNext } from '../../../../src/plugins/utils'
 describe('ESNext method sortBy', () => {
   const method = new ESNext().sortBy
-  let resource: Array<any> = [
+  const resource: Array<any> = [
     { id: 0, name: 'abb' },
     { id: -1, name: 'abc' },
     { id: 1, name: 'aab' }

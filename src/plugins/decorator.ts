@@ -21,7 +21,7 @@ export function Debounce(...args: any) {
       [tempTime] = args
     }
 
-    let configs = {
+    const configs = {
       func: method,
       time: tempTime,
       option: {
@@ -31,7 +31,7 @@ export function Debounce(...args: any) {
     }
 
     let timer: any = null
-    let { func, time, option } = configs
+    const { func, time, option } = configs
 
     // 生成防抖函数
     const _debounce = (...arg: []) => {
@@ -54,7 +54,7 @@ export function Debounce(...args: any) {
     // 重写 function ...params 为原 function 参数
     descriptor.value = function(...params: any) {
       // 获取当前 this
-      let _this = this
+      const _this = this
       // 更改运行时的防抖函数 this 指向
       configs.option.context = _this
       // @ts-ignore
@@ -79,7 +79,7 @@ export function Throttle(...args: any) {
       [tempTime] = args
     }
 
-    let configs = {
+    const configs = {
       func: method,
       time: tempTime,
       option: {
@@ -90,13 +90,13 @@ export function Throttle(...args: any) {
     }
 
     let timer: any = null
-    let { func, time, option } = configs
+    const { func, time, option } = configs
 
     // 生成节流函数
     let previous = new Date(0).getTime()
     const _throttle = (...arg: []) => {
       CLEAR_TIMER_FUNCTION.CURRENTMETHOD = name
-      let now = new Date().getTime()
+      const now = new Date().getTime()
       if (!option.leading) {
         if (timer) return
         timer = setTimeout(() => {
@@ -123,7 +123,7 @@ export function Throttle(...args: any) {
     // 重写 function ...params 为原 function 参数
     descriptor.value = function(...params: any) {
       // 获取当前 this
-      let _this = this
+      const _this = this
       // 更改运行时的节流函数 this 指向
       configs.option.context = _this
       // @ts-ignore

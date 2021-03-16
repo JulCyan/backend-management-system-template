@@ -18,7 +18,7 @@ export default class ExportFile extends Vue {
     }).then(response => {
       if (response.headers['content-type'].includes('application/json')) {
         response.data = JSON.parse(this.$utils.arrayBufferToJSON(response.data))
-        let { code, state, message } = response.data
+        const { code, state, message } = response.data
         // 业务状态码 为 2xx
         if (SuccessStatus.includes(code)) {
           !state && Notification({
@@ -55,8 +55,8 @@ export default class ExportFile extends Vue {
   }
 
   protected exportByGet(requestConfig: AxiosRequestConfig) {
-    let { params, url } = requestConfig
-    let query = this.$utils.turnToUrlQuery({ ...params, token: UserModule.token })
+    const { params, url } = requestConfig
+    const query = this.$utils.turnToUrlQuery({ ...params, token: UserModule.token })
     window.open(`${AppModule.baseURL}${url}?${query}`)
   }
 }

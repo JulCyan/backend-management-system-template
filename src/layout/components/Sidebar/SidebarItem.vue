@@ -94,7 +94,7 @@ export default class extends Vue {
     }
     let hiddenNumber = 0
     if (this.item.children) {
-      for (let child of this.item.children) {
+      for (const child of this.item.children) {
         if (!child.meta || !child.meta.hidden) {
           return child
         }
@@ -121,7 +121,7 @@ export default class extends Vue {
     return path.resolve(this.basePath, routePath)
   }
 
-  protected isExternal(val):boolean {
+  protected isExternal(val): boolean {
     return this.$utils.regexpTest(RegHttpsLink, val)
   }
 }

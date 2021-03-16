@@ -126,7 +126,7 @@
           label="操作"
           :min-width="variables['TableWThree']"
         >
-          <template #default="{ row }">
+          <template #default="{row}">
             <el-button
               type="text"
               size="small"
@@ -377,7 +377,7 @@ const MainType = '__$MainType'
 export default class Resource extends Mixins(MixinForm) {
   constructor() {
     super()
-    let metaValidator: IFormValidate = (
+    const metaValidator: IFormValidate = (
       rule: any,
       value: string,
       callback: any
@@ -388,7 +388,7 @@ export default class Resource extends Mixins(MixinForm) {
       this.$nextTick(() => {
         if (typeof value == 'string') {
           try {
-            var obj = JSON.parse(value)
+            const obj = JSON.parse(value)
             if (typeof obj == 'object' && obj) {
               callback()
             } else {
@@ -441,6 +441,7 @@ export default class Resource extends Mixins(MixinForm) {
       meta: [{ validator: metaValidator, trigger: 'blur' }]
     }
   }
+
   private data: any = {
     tableColumsConfig: [],
     tableList: [],
@@ -469,6 +470,7 @@ export default class Resource extends Mixins(MixinForm) {
     allResourceList: [],
     expandRowKeys: []
   };
+
   protected created() {
     this.init()
     this.getList()
@@ -503,7 +505,7 @@ export default class Resource extends Mixins(MixinForm) {
   }
 
   protected normalizer(node) {
-    let result = {
+    const result = {
       id: node.id,
       label: node.perName,
       children: node.sonNode
@@ -548,12 +550,12 @@ export default class Resource extends Mixins(MixinForm) {
   }
 
   protected paramsFilter() {
-    let parentId = this.data.insertForm.parentId
+    const parentId = this.data.insertForm.parentId
     this.data.insertForm.parentId = parentId === MainType ? null : parentId
   }
 
   protected sent() {
-    let requestConfig = this.ISADD ? resourceAdd : resourceEdit
+    const requestConfig = this.ISADD ? resourceAdd : resourceEdit
     this.paramsFilter()
     return this.$axios(
       requestConfig({
@@ -603,7 +605,7 @@ export default class Resource extends Mixins(MixinForm) {
   }
 
   protected radioDisabled(value) {
-    let result = false
+    const result = false
     return result
   }
 
@@ -678,12 +680,15 @@ export default class Resource extends Mixins(MixinForm) {
   get ISCLIENT(): boolean {
     return this.data.insertForm.perType === ResourceType.client
   }
+
   get ISDIR(): boolean {
     return this.data.insertForm.perType === ResourceType.dir
   }
+
   get ISMENU(): boolean {
     return this.data.insertForm.perType === ResourceType.menu
   }
+
   get ISBUTTON(): boolean {
     return this.data.insertForm.perType === ResourceType.button
   }

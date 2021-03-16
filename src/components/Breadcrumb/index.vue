@@ -50,7 +50,7 @@ export default class extends Vue {
   }
 
   private getBreadcrumb() {
-    let matched = this.$route.matched.filter(
+    const matched = this.$route.matched.filter(
       (item) => item.meta && getRouteTitle(item)
     )
     // const first = matched[0]

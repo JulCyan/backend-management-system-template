@@ -14,7 +14,7 @@ import { asyncAddRoutes, LocalRoutes } from './plugins/router'
 })
 export default class App extends Vue {
   protected async created() {
-    let redirect = window.location.href.split('#')[1]
+    const redirect = window.location.href.split('#')[1]
     this.$router.push('/')
     if (UserModule.token) {
       await UserModule.getUserInfo()

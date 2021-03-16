@@ -38,7 +38,7 @@ instance.interceptors.response.use((response: AxiosResponse): any => {
     businessCodeHandler(response)
   }
 }, (responseError) => {
-  let { response } = responseError
+  const { response } = responseError
   if (ServerErrorStatus.includes(response && response.status)) {
     response.data = {}
     return response
@@ -51,7 +51,7 @@ instance.interceptors.response.use((response: AxiosResponse): any => {
 })
 
 export const businessCodeHandler = (response) => {
-  let { code, state, message } = response.data
+  const { code, state, message } = response.data
   // 业务状态码 为 2xx
   if (SuccessStatus.includes(code)) {
     !state && Notification({

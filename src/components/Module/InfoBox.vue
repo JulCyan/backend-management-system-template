@@ -42,7 +42,7 @@ export default class InfoBox extends Vue {
   private readonly data;
 
   @Prop({ required: true, type: Array, default: () => [] })
-  private readonly config: Array<{ label: string; prop?: string, computed: Function }>;
+  private readonly config: Array<{ label: string; prop?: string; computed: Function }>;
 
   protected getValue(item) {
     let result = null

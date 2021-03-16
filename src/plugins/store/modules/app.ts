@@ -10,14 +10,14 @@ export enum DeviceType {
 }
 
 export interface IAppState {
-  device: DeviceType
+  device: DeviceType;
   sidebar: {
-    opened: boolean
-    withoutAnimation: boolean
-  }
-  dynamicRoutes: Array<RouteConfig>,
-  baseURL: string
-  language: string
+    opened: boolean;
+    withoutAnimation: boolean;
+  };
+  dynamicRoutes: Array<RouteConfig>;
+  baseURL: string;
+  language: string;
 }
 @Module({ dynamic: true, store, name: 'app' })
 class App extends VuexModule implements IAppState {
@@ -25,6 +25,7 @@ class App extends VuexModule implements IAppState {
     opened: getSidebarStatus() !== 'closed',
     withoutAnimation: false
   }
+
   public device = DeviceType.Desktop
   public language = getLocale()
   public dynamicRoutes = []

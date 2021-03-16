@@ -113,11 +113,12 @@ export default class changePWD extends Vue {
     pwd: '',
     confirmPwd: ''
   };
+
   private rules: any;
   constructor() {
     super()
 
-    let validatePass: IFormValidate = (rule, value, callback) => {
+    const validatePass: IFormValidate = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'))
       } else {
@@ -130,7 +131,7 @@ export default class changePWD extends Vue {
       }
     }
 
-    let validateCheckPass: IFormValidate = (rule, value, callback) => {
+    const validateCheckPass: IFormValidate = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入新密码'))
         // @ts-ignore
@@ -170,12 +171,13 @@ export default class changePWD extends Vue {
       ]
     }
   }
+
   protected created() {
     this.submitForm.accountName = UserModule.userInfo.accountName
   }
 
   protected changePwd() {
-    (this.$refs['submitForm'] as ElForm).validate(async valid => {
+    (this.$refs.submitForm as ElForm).validate(async valid => {
       if (valid) {
         await UserModule.changePwd({ pwd: md5(this.submitForm.pwd) })
         this.$router.push(`/login?redirect=${this.$route.fullPath}`)
@@ -184,6 +186,7 @@ export default class changePWD extends Vue {
       }
     })
   }
+
   protected cancle() {
     this.$router.back()
   }

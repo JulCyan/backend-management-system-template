@@ -9,15 +9,15 @@
 //   exports[key] = list[key]
 // })
 
-exports.requireContext = function(context, excludes:Array<string> = ['.d.ts', 'index']) {
-  let list = {}
+exports.requireContext = function(context, excludes: Array<string> = ['.d.ts', 'index']) {
+  const list = {}
   // TODO: 过滤非必要加载文件
   context.keys().filter((item) => {
     return !excludes.filter(fd => item.includes(fd)).length
   }).forEach(item => {
     // TODO: 加载文件
-    let me = context(item)
-    let data = me.default || me
+    const me = context(item)
+    const data = me.default || me
     Object.assign(list, data)
   })
   return list

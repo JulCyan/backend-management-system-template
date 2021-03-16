@@ -25,7 +25,7 @@ import { RegHttpsLink } from '@/configs/const'
 export default class extends Vue {
   @Prop({ required: true }) private to!: string
 
-  protected isExternal(val):boolean {
+  protected isExternal(val): boolean {
     return this.$utils.regexpTest(RegHttpsLink, val)
   }
 }

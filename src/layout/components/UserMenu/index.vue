@@ -121,7 +121,7 @@ export default class UserMenu extends Vue {
   }
 
   private changePwd() {
-    this.$router.push(`/change-pwd`)
+    this.$router.push('/change-pwd')
   }
 
   get username() {

@@ -6,19 +6,19 @@ import { Utils } from '@/plugins/utils'
 import store from '@/plugins/store'
 
 export interface IPermissionState {
-  dynamicRoutes: Array<RouteConfig>
-  keyPathMap: Map<string, string>
-  routes: Array<RouteConfig>
+  dynamicRoutes: Array<RouteConfig>;
+  keyPathMap: Map<string, string>;
+  routes: Array<RouteConfig>;
 }
 @Module({ dynamic: true, store, name: 'permission' })
 class Permission extends VuexModule implements IPermissionState {
   public dynamicRoutes = []
 
-  get keyPathMap() : any {
+  get keyPathMap(): any {
     return new Utils().recursionGetTreeMap(this.dynamicRoutes)
   }
 
-  get routes() : any {
+  get routes(): any {
     return WhiteRoutes.concat(this.dynamicRoutes)
   }
 
