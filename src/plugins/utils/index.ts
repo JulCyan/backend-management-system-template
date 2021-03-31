@@ -7,7 +7,7 @@ import moment from 'moment'
 // 此处继承没有必要联系, 只是为了区分职责, ts 只能单类继承
 export class StorageOperation {
   private readonly cookies: any
-  constructor(configs?: utilsConfigs) {
+  constructor(configs?: IUtilsConfigs) {
     this.cookies = configs && configs.cookies
   }
 
@@ -74,7 +74,7 @@ export class StorageOperation {
 }
 
 export class NumberOperation extends StorageOperation {
-  constructor(configs?: utilsConfigs) {
+  constructor(configs?: IUtilsConfigs) {
     super(configs)
   }
 
@@ -126,7 +126,7 @@ export class NumberOperation extends StorageOperation {
 }
 
 export class ESNext extends NumberOperation {
-  constructor(configs?: utilsConfigs) {
+  constructor(configs?: IUtilsConfigs) {
     super(configs)
   }
 
@@ -213,7 +213,6 @@ export class ESNext extends NumberOperation {
   public clearSuffix(str: string): string {
     let newStr = ''
     if (str.split('').reverse().join('').indexOf('.') !== -1) {
-      // @ts-ignore
       newStr = str.split('').reverse().join('').split('.').pop().split('').reverse().join('')
     } else {
       newStr = str
@@ -537,7 +536,7 @@ export class ESNext extends NumberOperation {
 }
 
 export class DOMOperation extends ESNext {
-  constructor(configs?: utilsConfigs) {
+  constructor(configs?: IUtilsConfigs) {
     super(configs)
   }
 
@@ -571,7 +570,6 @@ export class DOMOperation extends ESNext {
   }
 
   public getDOMDeep(ele = 'body'): number {
-    // @ts-ignore
     const getDepth = node => {
       if (!node.children || node.children.length === 0) {
         return 1
@@ -622,9 +620,8 @@ export class DOMOperation extends ESNext {
 export class RouterOperation extends DOMOperation {
   private readonly router: VueRouter
 
-  constructor(configs?: utilsConfigs) {
+  constructor(configs?: IUtilsConfigs) {
     super(configs)
-    // @ts-ignore
     this.router = configs && configs.router
   }
 
@@ -683,7 +680,7 @@ export class DateOperation extends RouterOperation {
 }
 
 export class ProjectSelf extends DateOperation {
-  constructor(configs?: utilsConfigs) {
+  constructor(configs?: IUtilsConfigs) {
     super(configs)
   }
 
@@ -708,7 +705,7 @@ export class ProjectSelf extends DateOperation {
 }
 
 export class Utils extends ProjectSelf {
-  constructor(configs?: utilsConfigs) {
+  constructor(configs?: IUtilsConfigs) {
     super(configs)
   }
 
@@ -812,20 +809,20 @@ export class PermissionDirective extends Directive {
   }
 }
 
-export interface recursionSortRoutesParams {
+export interface IRecursionSortRoutesParams {
   resource: any;
   sortFn?: (...args: any) => number;
   childrenKey?: string;
   filterRoutes?: Array<any>;
 }
 
-export interface utilsConfigs {
+export interface IUtilsConfigs {
   router?: VueRouter;
   cookies?: any;
 }
 
 export default {
-  install(Vue: VueConstructor, configs: utilsConfigs) {
+  install(Vue: VueConstructor, configs: IUtilsConfigs) {
     Vue.prototype.$utils = new Utils(configs)
   }
 }

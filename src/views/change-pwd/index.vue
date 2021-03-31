@@ -101,14 +101,13 @@ import { EXButton } from '@/components'
 import { Vue, Component } from 'vue-property-decorator'
 import { ElForm } from 'element-ui/types/form'
 import { changePwd } from '@/api'
-
-const md5 = require('md5')
+import md5 from 'md5'
 @Component({
   components: {
     EXButton
   }
 })
-export default class changePWD extends Vue {
+export default class ChangePWD extends Vue {
   private submitForm: any = {
     pwd: '',
     confirmPwd: ''
@@ -122,10 +121,8 @@ export default class changePWD extends Vue {
       if (value === '') {
         callback(new Error('请输入密码'))
       } else {
-        // @ts-ignore
         if (this.submitForm.confirmPwd !== '') {
-          // @ts-ignore
-          this.$refs.submitForm.validateField('confirmPwd')
+          (this.$refs.submitForm as ElForm).validateField('confirmPwd')
         }
         callback()
       }
@@ -134,7 +131,6 @@ export default class changePWD extends Vue {
     const validateCheckPass: IFormValidate = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入新密码'))
-        // @ts-ignore
       } else if (value !== this.submitForm.pwd) {
         callback(new Error('两次输入密码不一致!'))
       } else {

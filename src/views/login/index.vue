@@ -102,7 +102,7 @@ import { Route } from 'vue-router'
 import { Dictionary } from 'vue-router/types/router'
 import { Form as ElForm, Input } from 'element-ui'
 import { UserModule, PermissionModule } from '@/plugins/store/modules'
-const md5 = require('md5')
+import md5 from 'md5'
 
 @Component({
   name: 'Login'

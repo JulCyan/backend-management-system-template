@@ -35,7 +35,14 @@ module.exports = {
     "no-mixed-operators": "off",
     "vue/attribute-hyphenation": "off",
     "no-explicit-any": "off",
-    "no-unused-vars": "off",
-    "quotes": "off"
+    "@typescript-eslint/no-unused-vars": "off",
+    "quotes": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "prefer-const": "off",
+    "@typescript-eslint/no-this-alias": "off",
+    "@typescript-eslint/no-use-before-define": "off",
   }
 };
