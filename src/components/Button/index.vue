@@ -21,6 +21,18 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
+/**
+ * @version 1.0
+ * @name EXButton
+ * @classdesc 基于 el-button 二次封装, 按钮click事件拦截: 请求, 节流, 表单校验
+ * @prop { boolean } enableInterceptor 开启事件拦截
+ * @prop { object } attributesProp 原按钮属性组合对象
+ * @prop { Function } sent clickHandlerFunc
+ * @prop { Function } respond clickResponseHandlerFunc
+ * @prop { Function } validator 表单校验Func
+ *
+ * @author chan
+ */
 @Component
 export default class EXButton extends Vue {
   @Prop({ type: Object })

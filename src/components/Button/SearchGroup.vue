@@ -1,6 +1,6 @@
 <style scoped lang="scss">
 .search-group-container {
- display: inline-block;
+  display: inline-block;
   .g-reset {
     margin-left: 20px;
   }
@@ -34,6 +34,17 @@
 <script lang="ts">
 import { Component, Prop } from 'vue-property-decorator'
 import { EXButton } from '@/components'
+/**
+ * @version 1.0
+ * @name SearchGroup
+ * @extends EXButton
+ * @classdesc 基于基础组件 Button 组合式组件, SearchResetGroup(可扩展)
+ * @prop { object } attributesForResetProp 同 EXbutton attributesProp
+ * @prop { Function } reset resetClickHandlerFunc
+ * @prop { attributesForResetProp } executeAfterReset 执行reset后是否执行 searchClickHandlerFunc
+ *
+ * @author chan
+ */
 @Component({
   components: {
     EXButton
@@ -69,7 +80,10 @@ export default class SearchGroup extends EXButton {
   }
 
   protected generateAttributesForReset() {
-    this.attributesForReset = { ...this.attributesForReset, ...this.attributesForResetProp }
+    this.attributesForReset = {
+      ...this.attributesForReset,
+      ...this.attributesForResetProp
+    }
   }
 }
 </script>

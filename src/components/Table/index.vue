@@ -89,11 +89,13 @@ export type TableColumn = {
 export type TableColumnButtons = {
   type: string;
   minWidth: string;
-  buttons: Array<{
-    text: string;
-    fn: Function;
-    type?: string;
-  }>;
+  buttons: Array<ColumnButton>;
+};
+
+export type ColumnButton = {
+  text: string;
+  fn: Function;
+  type?: string;
 };
 
 export enum TableColumnType {
@@ -103,7 +105,31 @@ export enum TableColumnType {
   index = 'index',
   selection = 'selection',
 }
-
+/**
+ * @version 1.0
+ * @name EXTable
+ * @classdesc 基于 el-table 二次封装, 实现数据驱动的配置化 Table
+ * @prop { Array<TableColumn | TableColumnButtons> } tableColumsConfig 表格列配置信息
+ * @prop { Object } tableSetting 表格控制项设置
+ * @prop { Array<T> } tableList 表格数据
+ *
+ * @author chan
+ */
+/**
+ * @version 1.0
+ * @name tableColumsConfig
+ * @description tableColumsConfig 字段介绍
+ * @field { TableColumnType }  TableColumn.type 列类型
+ * @field { string }  TableColumn.label 列名称
+ * @field { string }  TableColumn.prop 列字段名
+ * @field { string }  TableColumn.minWidth 列最小宽度
+ * @field { TableColumnType } TableColumnButtons.type
+ * @field { string } TableColumnButtons.minWidth
+ * @field { Array<ColumnButton> } TableColumnButtons.buttons
+ * @field { string } ColumnButton.type 按钮类型(颜色配置, 都是 text类型, todo)
+ * @field { string } ColumnButton.text 按钮文本
+ * @field { Function } ColumnButton.fn 按钮处理函数, 入参为 row
+ */
 @Component
 export default class EXTable extends Vue {
   @Prop({

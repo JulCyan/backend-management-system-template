@@ -27,6 +27,12 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { EXTable, EXPagination } from '@/components'
 import { TableColumn, TableColumnButtons } from '@/components/Table/index.vue'
+/**
+ * @version 1.0
+ * @name TableComplex
+ * @classdesc 组合基础组件 EXTable 和 EXPagination
+ * @inheritdoc EXTable, EXPagination
+ */
 @Component({
   components: {
     EXTable,

@@ -36,7 +36,7 @@ module.exports = {
     "vue/attribute-hyphenation": "off",
     "no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": "off",
-    "quotes": "off",
+    'quotes': [2, 'single', { 'avoidEscape': true, 'allowTemplateLiterals': true }],
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/interface-name-prefix": "off",

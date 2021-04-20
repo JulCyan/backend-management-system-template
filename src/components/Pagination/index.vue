@@ -16,12 +16,11 @@
 
 <template>
   <section class="__cyan_pagination_wrap">
-    <div
-      v-if="resInfo.total"
-      class="base-pagination-container"
-    >
+    <div v-if="resInfo.total" class="base-pagination-container">
       <div class="left">
-        当前第{{ resInfo.pageNum }}/{{ Math.ceil(resInfo.total / resInfo.pageSize) }}页，每页{{ resInfo.pageSize }}条，共{{ resInfo.total }}条
+        当前第{{ resInfo.pageNum }}/{{
+          Math.ceil(resInfo.total / resInfo.pageSize)
+        }}页，每页{{ resInfo.pageSize }}条，共{{ resInfo.total }}条
       </div>
       <div class="right">
         <!-- <el-button
@@ -60,6 +59,18 @@ import { Vue, Component, Prop, PropSync } from 'vue-property-decorator'
 import { BaseNS } from '@/configs/type'
 import { ESNext } from '@/plugins/utils'
 import { DataType } from '@/configs/const'
+/**
+ * @version 1.0
+ * @name EXPagination
+ * @classdesc 基于 el-pagination 二次封装, 扩展基础用法
+ * @prop { object } params requestParams
+ * @prop { Function } getList pageNumChangeHanderFunc
+ * @prop { attributesForResetProp } executeAfterReset 执行reset后是否执行 searchClickHandlerFunc
+ * @prop { object } tableSetting 组合 EXTable 组件所需参数
+ * @prop { tableSetting } initGetList 初始化完成自动请求一次
+ *
+ * @author chan
+ */
 @Component
 export default class EXPagination extends Vue {
   @PropSync('params')

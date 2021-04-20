@@ -10,11 +10,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator"
-import { RegHttpsLink } from "@/configs/const"
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import { RegHttpsLink } from '@/configs/const'
 
 @Component({
-  name: "SidebarItemLink"
+  name: 'SidebarItemLink'
 })
 export default class extends Vue {
   @Prop({ required: true }) private to!: string;
