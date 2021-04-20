@@ -2,7 +2,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import html2canvas from 'html2canvas'
 import { jsPDF as JSPDF } from 'jspdf'
 @Component
-export default class ExportFile extends Vue {
+export default class ExportPDF extends Vue {
   public _$exportPDF({ id, fileName = 'export' }, callback?) {
     const element = document.getElementById(id) // 这个dom元素是要导出pdf的div容器
     const w = element.offsetWidth // 获得该容器的宽

@@ -5,9 +5,13 @@ export const CLEAR_TIMER_FUNCTION = {
   CURRENTMETHOD: null
 }
 /**
- * @member Debounce 防抖装饰器
- * @param time
+ * @version 1.0
+ * @name Debounce 
+ * @description 防抖装饰器
+ * @param time 毫秒值, 设定时间阈值之内点击后会重置计时, 计时结束后执行fn
  * @returns DecoratorFunc (target, name, description) => void
+ * 
+ * @author chan
  */
 // 接受装饰器参数
 export function Debounce(...args: any) {
@@ -64,9 +68,13 @@ export function Debounce(...args: any) {
 }
 
 /**
- * @member Throttle 节流装饰器
- * @param time
+ * @version 1.0
+ * @name Throttle 
+ * @description 节流装饰器
+ * @param time 毫秒值, 设定时间阈值之内不可重复触发fn
  * @returns DecoratorFunc (target, name, description) => void
+ * 
+ * @author chan
  */
 // 接受装饰器参数
 export function Throttle(...args: any) {

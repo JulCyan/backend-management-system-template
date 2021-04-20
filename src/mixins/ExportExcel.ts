@@ -5,7 +5,7 @@ import { AxiosRequestConfig } from 'axios'
 import { Vue, Component } from 'vue-property-decorator'
 import { notification as Notification } from '@/plugins/notification'
 @Component
-export default class ExportFile extends Vue {
+export default class ExportExcel extends Vue {
   public _$exportExcel(requestConfig: AxiosRequestConfig) {
     requestConfig.method && requestConfig.method.toLowerCase() === 'get' ? this.exportByGet(requestConfig) : this.exportByPost(requestConfig)
   }
