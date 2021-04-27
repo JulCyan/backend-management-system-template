@@ -1,6 +1,5 @@
 import { ResourceType, BrowserType, ImplicitParseFalseExcludes, WeChatJsApiList as jsApiList, RegWeChat, PermissionArgs, DataType } from '@/configs/const'
-import { BaseNS } from '@/configs/type'
-import { IDirectiveBinding } from '@/configs/interface'
+import { BaseNS, IDirectiveBinding } from '@/type'
 import VueRouter, { RawLocation, RouteConfig } from 'vue-router/types'
 import { VueConstructor } from 'vue'
 import moment from 'moment'

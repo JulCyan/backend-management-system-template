@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { BaseNS } from '@/configs/type'
+import { BaseNS } from '@/type'
 import { Vue, Component, Prop } from 'vue-property-decorator'
 @Component
 export default class InfoItem extends Vue {

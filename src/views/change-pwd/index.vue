@@ -95,7 +95,7 @@
 </template>
 
 <script lang="ts">
-import { IFormValidate } from '@/configs/interface'
+import { IFormValidate } from '@/type'
 import { UserModule } from '@/plugins/store/modules'
 import { EXButton } from '@/components'
 import { Vue, Component } from 'vue-property-decorator'

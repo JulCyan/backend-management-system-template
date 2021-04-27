@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { BaseNS } from '@/configs/type'
+import { BaseNS } from '@/type'
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 @Component
 export default class RealTimeData extends Vue {

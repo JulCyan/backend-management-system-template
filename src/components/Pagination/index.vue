@@ -56,7 +56,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, PropSync } from 'vue-property-decorator'
-import { BaseNS } from '@/configs/type'
+import { BaseNS } from '@/type'
 import { ESNext } from '@/plugins/utils'
 import { DataType } from '@/configs/const'
 /**

@@ -8,20 +8,20 @@ Vue.use(Router)
 /**
  * @name VueRouter
  * @description VueRouter 字段配置
- * @param { string, required, rule: aa-bb-cc } path VueRouter Path
- * @param { string, required, rule: aaBaCa } name VueRouter Name
- * @param { MetaConfig } meta VueRouter Meta
+ * @field { string, required, rule: aa-bb-cc } path VueRouter Path
+ * @field { string, required, rule: aaBaCa } name VueRouter Name
+ * @field { MetaConfig } meta VueRouter Meta
  */
 
 /**
- * @name Meta
+ * @name MetaConfig
  * @description VueRouter Meta 自定义字段
- * @param  { string, required } title 侧边栏文本, 也是面包屑的默认值
- * @param  { string } icon element字体图标类名
- * @param  { boolean, default: undefined } useBreadcrumb 为 false 时不展示面包屑
- * @param  { boolean, default: undefined } hidden 侧边栏是否隐藏
- * @param  { string } breadcrumb 面包屑的值, 默认不写时使用title的值
- * @param  { string } activeMenu 常用于 meta hidden 为 true 时, 侧边栏选中菜单
+ * @field  { string, required } title 侧边栏文本, 也是面包屑的默认值
+ * @field  { string } icon element字体图标类名
+ * @field  { boolean, default: undefined } useBreadcrumb 为 false 时不展示面包屑
+ * @field  { boolean, default: undefined } hidden 侧边栏是否隐藏
+ * @field  { string } breadcrumb 面包屑的值, 默认不写时使用title的值
+ * @field  { string } activeMenu 常用于 meta hidden 为 true 时, 侧边栏选中菜单
  */
 
 export const WhiteRoutes: Array<RouteConfig> = [

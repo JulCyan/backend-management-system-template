@@ -1,6 +1,6 @@
 {
   "title": "后台管理系统模板",
-  "showSettings": true,
+  "showSettings": false,
   "showTagsView": true,
   "fixedHeader": true,
   "showSidebarLogo": true,

@@ -1,4 +1,3 @@
-import { _isDev } from '@/configs/const/env'
 import { AppModule, UserModule } from '@/plugins/store/modules'
 import { SuccessStatus, ServerErrorStatus, UnauthorizedStatus } from '@/configs/const'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
@@ -31,23 +30,29 @@ instance.interceptors.request.use((request: AxiosRequestConfig): any => {
 
 instance.interceptors.response.use((response: AxiosResponse): any => {
   // http status 为 2xx
-  if (SuccessStatus.includes(response && response.status)) {
-    if (['arraybuffer'].includes(response.request.responseType)) {
+  if (SuccessStatus.includes(response?.status)) {
+    // File流
+    if (['arraybuffer'].includes(response?.request?.responseType)) {
       return response
     }
     businessCodeHandler(response)
   }
 }, (responseError) => {
-  const { response } = responseError
-  if (ServerErrorStatus.includes(response && response.status)) {
-    response.data = {}
-    return response
-  } else if (UnauthorizedStatus.includes(response && response.status)) {
+  const response: AxiosResponse = responseError?.response
+  const DefaultResponse = {}
+  // http status 为 5xx
+  if (ServerErrorStatus.includes(response?.status)) {
+    response.data = DefaultResponse
+    // http status 为 4xx
+  } else if (UnauthorizedStatus.includes(response?.status)) {
     UserModule.ResetToken()
-    location.reload()
-    response.data = {}
-    return response
+    response.data = DefaultResponse
+    setTimeout(() => {
+      location.reload()
+    })
   }
+
+  return response
 })
 
 export const businessCodeHandler = (response) => {

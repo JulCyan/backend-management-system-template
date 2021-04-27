@@ -364,9 +364,9 @@ import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import { EXPagination } from '@/components'
 import variables from '@/styles/_variables.scss'
-import { Override } from '@/plugins'
+import { Override } from '@/plugins/decorator'
 import { asyncAddRoutes } from '@/plugins/router'
-import { IFormValidate } from '@/configs/interface'
+import { IFormValidate } from '@/type'
 const MainType = '__$MainType'
 @Component({
   components: {

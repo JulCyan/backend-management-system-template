@@ -59,7 +59,7 @@ import {
   PropSync
 } from 'vue-property-decorator'
 import { Pagination, Button } from 'element-ui'
-import { BaseNS } from '@/configs/type'
+import { BaseNS } from '@/type'
 @Component({
   components: {
     [Pagination.name]: Pagination,
