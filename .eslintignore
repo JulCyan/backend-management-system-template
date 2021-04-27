@@ -1,5 +1,6 @@
 dist/*.js
 src/assets
+src/plugins/decorator.ts
 tests/unit/coverage
 **/require-context.ts
 **/dts-service.js
