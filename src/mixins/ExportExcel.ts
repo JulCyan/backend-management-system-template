@@ -1,4 +1,4 @@
-import { SuccessStatus, UnauthorizedStatus } from '@/configs/const/index'
+import { SuccessBusinessStatus, UnauthorizedBusinessStatus } from '@/configs/const/index'
 import { AppModule, UserModule } from '@/plugins/store/modules'
 
 import { AxiosRequestConfig } from 'axios'
@@ -20,14 +20,14 @@ export default class ExportExcel extends Vue {
         response.data = JSON.parse(this.$utils.arrayBufferToJSON(response.data))
         const { code, state, message } = response.data
         // 业务状态码 为 2xx
-        if (SuccessStatus.includes(code)) {
+        if (SuccessBusinessStatus.includes(code)) {
           !state && Notification({
             type: 'success',
             message
           })
           return response.data
           // 业务状态码 为 401 or 403
-        } else if (UnauthorizedStatus.includes(code)) {
+        } else if (UnauthorizedBusinessStatus.includes(code)) {
           UserModule.ResetToken()
           location.reload()
           // 无访问权限

@@ -1,8 +1,7 @@
 import { AppModule, UserModule } from '@/plugins/store/modules'
-import { SuccessStatus, ServerErrorStatus, UnauthorizedStatus } from '@/configs/const'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { notification as Notification } from '../notification'
 import settings from '@/settings.json'
+import { HttpStatusServicesFactory } from '@/plugins/utils/strategy'
 const baseURL = settings.enableProxy ? process.env.VUE_APP_PREFIX : AppModule.baseURL
 
 export const instance = axios.create({
@@ -29,64 +28,11 @@ instance.interceptors.request.use((request: AxiosRequestConfig): any => {
 }, (requestError) => { })
 
 instance.interceptors.response.use((response: AxiosResponse): any => {
-  // http status 为 2xx
-  if (SuccessStatus.includes(response?.status)) {
-    // File流
-    if (['arraybuffer'].includes(response?.request?.responseType)) {
-      return response
-    }
-    businessCodeHandler(response)
-  }
+  return HttpStatusServicesFactory.getStatusService(response).handler(response)
 }, (responseError) => {
   const response: AxiosResponse = responseError?.response
-  const DefaultResponse = {}
-  // http status 为 5xx
-  if (ServerErrorStatus.includes(response?.status)) {
-    response.data = DefaultResponse
-    // http status 为 4xx
-  } else if (UnauthorizedStatus.includes(response?.status)) {
-    UserModule.ResetToken()
-    response.data = DefaultResponse
-    setTimeout(() => {
-      location.reload()
-    })
-  }
-
-  return response
+  return HttpStatusServicesFactory.getStatusService(response).handler(response)
 })
-
-export const businessCodeHandler = (response) => {
-  const { code, state, message } = response.data
-  // 业务状态码 为 2xx
-  if (SuccessStatus.includes(code)) {
-    !state && Notification({
-      type: 'success',
-      message
-    })
-    return response.data
-    // 业务状态码 为 401 or 403
-  } else if (UnauthorizedStatus.includes(code)) {
-    UserModule.ResetToken()
-    location.reload()
-    // 无访问权限
-  } else if (code === 4003) {
-    !state && Notification({
-      type: 'error',
-      message,
-      onClose: () => {
-        location.href = '/'
-      }
-    })
-    // others
-  } else {
-    !state && Notification({
-      type: 'error',
-      message
-    })
-    response.data = {}
-    return response.data
-  }
-}
 
 export default {
   install(Vue: any) {

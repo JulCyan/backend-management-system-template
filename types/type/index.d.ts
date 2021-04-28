@@ -4,7 +4,6 @@ declare module '@/type' {
     export type PackNS = number | string
     export type ArrayNS = Array<BaseNS>
 
-    import { AxiosResponse } from 'axios'
     export interface IFormValidate {
         (rule: any, value: any, callback: any): void;
     }
@@ -24,12 +23,4 @@ declare module '@/type' {
         modifiers: any;
         [propName: string]: any;
     }
-
-    // 重写 AxiosResponse
-    export interface IExtentionAxiosResponse<T> extends AxiosResponse<T> {
-        code: number;
-        message: string;
-        state: boolean;
-    }
-    export type IExtentionAxiosPromise<T = any> = Promise<IExtentionAxiosResponse<T>>
 }

@@ -350,7 +350,7 @@ import {
   resourceDetails
 } from '@/api'
 import {
-  SuccessStatus,
+  SuccessBusinessStatus,
   _isDev,
   resourceStatusList,
   resourceTypeList,
@@ -468,6 +468,7 @@ export default class Resource extends Mixins(MixinForm) {
     checkStrictly: false,
     insertFormRules: {},
     allResourceList: [],
+
     expandRowKeys: []
   };
 
@@ -482,7 +483,7 @@ export default class Resource extends Mixins(MixinForm) {
 
   public getList() {
     this.$axios(resourceList(this.data.searchForm)).then((res) => {
-      if (SuccessStatus.includes(res.code)) {
+      if (SuccessBusinessStatus.includes(res.code)) {
         this.data.tableList = res.data
       }
     })
@@ -491,7 +492,7 @@ export default class Resource extends Mixins(MixinForm) {
 
   protected getAllResourceList() {
     this.$axios(resourceList({})).then((res) => {
-      if (SuccessStatus.includes(res.code)) {
+      if (SuccessBusinessStatus.includes(res.code)) {
         this.data.allResourceList = [
           { perName: '主类目', id: MainType, sonNode: res.data }
         ]
@@ -518,8 +519,8 @@ export default class Resource extends Mixins(MixinForm) {
 
   protected getResourceDetails(id: string) {
     this.$axios(resourceDetails(id)).then((res) => {
-      if (SuccessStatus.includes(res.code)) {
-        if (SuccessStatus.includes(res.code)) {
+      if (SuccessBusinessStatus.includes(res.code)) {
+        if (SuccessBusinessStatus.includes(res.code)) {
           if (this.data.pageType === this._$pageType.add) {
             this.data.insertForm.parentId = res.data.id
           } else {
@@ -568,7 +569,7 @@ export default class Resource extends Mixins(MixinForm) {
   }
 
   protected respond(res) {
-    if (SuccessStatus.includes(res.code)) {
+    if (SuccessBusinessStatus.includes(res.code)) {
       this.getList()
       this._$resetForm()
       this.data.dialogFlag = false

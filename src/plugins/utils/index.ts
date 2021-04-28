@@ -26,7 +26,7 @@ export class StorageOperation {
    * @param key
    * @retunrs *: any
    */
-  public getS(key = ''): string | object {
+  public getS(key = ''): string | Record<string, unknown> {
     let result = sessionStorage.getItem(key) || ''
     try {
       result = JSON.parse(result)

@@ -1,14 +1,24 @@
+import { BaseNS } from '@/type'
+
 export * from './env'
 export * from './mime-type'
 export * from './regexp'
 export * from './views'
 
 // Http Status --------------------------------------------------
-export const SuccessStatus: Array<number> = [200, 201, 202, 204]
-export const RedirectStatus: Array<number> = [301, 302]
-export const ClientErrorStatus: Array<number> = [400, 404, 406, 422]
-export const UnauthorizedStatus: Array<number> = [401, 403]
-export const ServerErrorStatus: Array<number> = [500]
+export const SuccessHttpStatus: Array<number> = [200, 201, 202, 204]
+export const RedirectHttpStatus: Array<number> = [301, 302]
+export const ClientErrorHttpStatus: Array<number> = [400, 404, 406, 422]
+export const UnauthorizedHttpStatus: Array<number> = [401, 403]
+export const ServerErrorHttpStatus: Array<number> = [500]
+
+// Business Status --------------------------------------------------
+export const SuccessBusinessStatus: Array<BaseNS> = [200, 201, 202, 204]
+export const RedirectBusinessStatus: Array<BaseNS> = [301, 302]
+export const ClientErrorBusinessStatus: Array<BaseNS> = [400, 404, 406, 422]
+export const UnauthorizedBusinessStatus: Array<BaseNS> = [401, 403]
+export const ServerErrorBusinessStatus: Array<number> = [500]
+export const NoPermissionBusinessStatus: Array<number> = [4001]
 
 export const WeChatJsApiList: Array<string> = ['updateAppMessageShareData', 'updateTimelineShareData']
 

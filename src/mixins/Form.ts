@@ -1,5 +1,5 @@
 import { IRequestFunc } from '@/api'
-import { SuccessStatus } from '@/configs/const/index'
+import { SuccessBusinessStatus } from '@/configs/const/index'
 import { ElForm } from 'element-ui/types/form'
 import { Component, Mixins, Watch } from 'vue-property-decorator'
 import { TableComplex, EXButton, EXSelect, SearchGroup } from '@/components'
@@ -46,7 +46,7 @@ export default class Form extends Mixins(MixinBase) {
     return (currentPage = 1) => {
       this.data.searchForm.pageNum = currentPage
       this.$axios(api(this.data.searchForm)).then((res) => {
-        if (SuccessStatus.includes(res.code)) {
+        if (SuccessBusinessStatus.includes(res.code)) {
           this.data.tableList = this.$utils.catchNull(
             res,
             'data.list',

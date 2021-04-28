@@ -101,7 +101,7 @@
 import { Vue, Component, Mixins, Watch } from 'vue-property-decorator'
 import { MixinForm } from '@/mixins'
 import { TableColumnType } from '@/components/Table/index.vue'
-import { SuccessStatus, _isDev } from '@/configs/const'
+import { SuccessBusinessStatus, _isDev } from '@/configs/const'
 import { Tree } from 'element-ui'
 import {
   roleList,
@@ -182,7 +182,7 @@ export default class Role extends Mixins(MixinForm) {
 
   protected getPermissionList(data = { menuStatus: 0 }) {
     this.$axios(resourceListGetAllEnable(data)).then((res) => {
-      SuccessStatus.includes(res.code) && (this.data.tree = res.data)
+      SuccessBusinessStatus.includes(res.code) && (this.data.tree = res.data)
     })
   }
 
@@ -190,7 +190,7 @@ export default class Role extends Mixins(MixinForm) {
     this.data.insertForm.id = id
     this.data.pageType = this._$pageType.edit
     this.$axios(roleDetails(id)).then((res) => {
-      if (SuccessStatus.includes(res.code)) {
+      if (SuccessBusinessStatus.includes(res.code)) {
         this.data.insertForm.roleName = res.data.roleName
         this.data.dialogFlag = true
         this.$nextTick(() => {
@@ -216,7 +216,7 @@ export default class Role extends Mixins(MixinForm) {
   }
 
   protected respond(res) {
-    if (SuccessStatus.includes(res.code)) {
+    if (SuccessBusinessStatus.includes(res.code)) {
       this.getList()
       this._$resetForm()
       this.data.dialogFlag = false

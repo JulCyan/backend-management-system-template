@@ -180,7 +180,7 @@ import {
   dictEdit,
   dictList
 } from '@/api'
-import { ResourceStatus, resourceStatusList, SuccessStatus, _isDev } from '@/configs/const'
+import { ResourceStatus, resourceStatusList, SuccessBusinessStatus, _isDev } from '@/configs/const'
 @Component
 export default class Account extends Mixins(MixinForm) {
   private data: any = {
@@ -293,7 +293,7 @@ export default class Account extends Mixins(MixinForm) {
 
   protected getDictDetails(row) {
     this.$axios(dictDetails(row.id)).then((res) => {
-      if (SuccessStatus.includes(res.code)) {
+      if (SuccessBusinessStatus.includes(res.code)) {
         this.data = {
           ...this.data,
           insertForm: res.data || row,

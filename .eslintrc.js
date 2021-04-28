@@ -44,5 +44,8 @@ module.exports = {
     "prefer-const": "off",
     "@typescript-eslint/no-this-alias": "off",
     "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off", 
+    "@typescript-eslint/ban-ts-comment": "off", 
+    
   }
 };
