@@ -1,6 +1,6 @@
 import { ServerErrorBusinessStatus, SuccessBusinessStatus, UnauthorizedBusinessStatus, NoPermissionBusinessStatus } from '@/configs/const'
 import { BaseNS, IBusinessData, ImplementAxiosResponse } from '@/type'
-import { notification as Notification } from '@/plugins/notification'
+import { msg } from '@/plugins/message'
 import { UserModule } from '@/plugins/store/modules'
 import { AjaxResponseService, DefaultResponse } from './http-status'
 
@@ -14,7 +14,7 @@ export class SuccessBusinessStatusService implements BusinessResponseService {
   handler(response: ImplementAxiosResponse): void | IBusinessData {
     const businessResponse: IBusinessData = response.data
     const { code, state, message } = businessResponse
-    !state && Notification({
+    !state && msg({
       type: 'success',
       message
     })
@@ -27,7 +27,7 @@ export class ServerErrorBusinessStatusService implements BusinessResponseService
   handler(response: ImplementAxiosResponse): void | IBusinessData {
     const businessResponse: IBusinessData = response.data
     const { code, state, message } = businessResponse
-    !state && Notification({
+    !state && msg({
       type: 'error',
       message
     })
@@ -48,7 +48,7 @@ export class NoPermissionBusinessStatusService implements BusinessResponseServic
   handler(response: ImplementAxiosResponse): void | IBusinessData {
     const businessResponse: IBusinessData = response.data
     const { code, state, message } = businessResponse
-    !state && Notification({
+    !state && msg({
       type: 'error',
       message,
       onClose: () => {
@@ -63,7 +63,7 @@ export class OthersBusinessStatusService implements BusinessResponseService {
   handler(response: ImplementAxiosResponse): void | IBusinessData<any> {
     let businessResponse: IBusinessData = response.data
     const { code, state, message } = businessResponse
-    !state && Notification({
+    !state && msg({
       type: 'warning',
       message
     })

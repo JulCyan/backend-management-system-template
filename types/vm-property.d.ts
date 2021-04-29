@@ -6,6 +6,6 @@ declare module 'vue/types/vue' {
   interface Vue {
     $utils: Utils
     $axios: (config: AxiosRequestConfig) => IExtensionAxiosResponsePromise 
-    $notification: (args: any) => ElNotificationComponent
+    $msg: (args: any) => ElNotificationComponent
   }
 }

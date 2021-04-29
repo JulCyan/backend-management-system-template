@@ -587,7 +587,7 @@ export default class Resource extends Mixins(MixinForm) {
       text: '确定要删除该资源吗？',
       success: () => {
         if (row.sonNode && row.sonNode.length) {
-          this.$notification({
+          this.$msg({
             title: '删除提示',
             message: '该资源存在子节点，不允许删除',
             type: 'error'

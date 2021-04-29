@@ -3,7 +3,8 @@ import { AppModule, UserModule } from '@/plugins/store/modules'
 
 import { AxiosRequestConfig } from 'axios'
 import { Vue, Component } from 'vue-property-decorator'
-import { notification as Notification } from '@/plugins/notification'
+import { msg } from '@/plugins/message'
+import { HttpStatusServicesFactory } from '@/plugins/utils/strategy'
 @Component
 export default class ExportExcel extends Vue {
   public _$exportExcel(requestConfig: AxiosRequestConfig) {
@@ -18,36 +19,7 @@ export default class ExportExcel extends Vue {
     }).then(response => {
       if (response.headers['content-type'].includes('application/json')) {
         response.data = JSON.parse(this.$utils.arrayBufferToJSON(response.data))
-        const { code, state, message } = response.data
-        // 业务状态码 为 2xx
-        if (SuccessBusinessStatus.includes(code)) {
-          !state && Notification({
-            type: 'success',
-            message
-          })
-          return response.data
-          // 业务状态码 为 401 or 403
-        } else if (UnauthorizedBusinessStatus.includes(code)) {
-          UserModule.ResetToken()
-          location.reload()
-          // 无访问权限
-        } else if (code === 4003) {
-          !state && Notification({
-            type: 'error',
-            message,
-            onClose: () => {
-              location.href = '/'
-            }
-          })
-          // others
-        } else {
-          !state && Notification({
-            type: 'error',
-            message
-          })
-          response.data = {}
-          return response.data
-        }
+        return HttpStatusServicesFactory.getStatusService(response).handler(response)
       } else {
         this.$utils.exportExcel(response)
       }

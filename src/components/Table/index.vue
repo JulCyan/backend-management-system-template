@@ -86,16 +86,16 @@ export type TableColumn = {
   type?: string;
 };
 
-export type TableColumnButtons = {
-  type: string;
-  minWidth: string;
-  buttons: Array<ColumnButton>;
-};
-
 export type ColumnButton = {
   text: string;
   fn: Function;
   type?: string;
+};
+
+export type TableColumnButtons = {
+  type: string;
+  minWidth: string;
+  buttons: Array<ColumnButton>;
 };
 
 export enum TableColumnType {

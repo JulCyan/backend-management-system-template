@@ -3,6 +3,12 @@ import { BaseNS, IDirectiveBinding } from '@/type'
 import VueRouter, { RawLocation, RouteConfig } from 'vue-router/types'
 import { VueConstructor } from 'vue'
 import moment from 'moment'
+
+export interface IUtilsConfigs {
+  router?: VueRouter;
+  cookies?: any;
+}
+
 // 此处继承没有必要联系, 只是为了区分职责, ts 只能单类继承
 export class StorageOperation {
   private readonly cookies: any
@@ -13,7 +19,7 @@ export class StorageOperation {
   /**
    * 设置本地缓存
    * @param { key: str , val: any }
-   * @retunrs true: bool
+   * @returns true: bool
    */
   public setS<T>({ key, val }: { key: string; val: T }): string {
     const result: string = JSON.stringify(val)
@@ -24,7 +30,7 @@ export class StorageOperation {
   /**
    * 读取本地缓存
    * @param key
-   * @retunrs *: any
+   * @returns *: any
    */
   public getS(key = ''): string | Record<string, unknown> {
     let result = sessionStorage.getItem(key) || ''
@@ -806,18 +812,6 @@ export class PermissionDirective extends Directive {
 
     return result
   }
-}
-
-export interface IRecursionSortRoutesParams {
-  resource: any;
-  sortFn?: (...args: any) => number;
-  childrenKey?: string;
-  filterRoutes?: Array<any>;
-}
-
-export interface IUtilsConfigs {
-  router?: VueRouter;
-  cookies?: any;
 }
 
 export default {
