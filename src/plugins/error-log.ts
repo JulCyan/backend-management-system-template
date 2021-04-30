@@ -1,13 +1,13 @@
 import { ErrorLogModule } from '@/plugins/store/modules'
 import { ESNext } from '@/plugins/utils'
 import settings from '@/settings.json'
-import { DataType } from '@/configs/const'
+import { ObjToStringReturns } from '@/configs/const'
 
 const { errorLog: needErrorLog } = settings
 
 const checkNeed = () => {
   const env = process.env.NODE_ENV
-  if (ESNext.typeOfAny(needErrorLog, DataType.array) && env) {
+  if (ESNext.typeofAny(needErrorLog, ObjToStringReturns.array) && env) {
     return needErrorLog.includes(env)
   }
   return false

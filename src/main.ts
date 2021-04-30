@@ -4,7 +4,7 @@ import 'normalize.css' // 初始化样式表
 import '@/styles/index.scss' // 全局样式表
 
 import App from '@/App.vue'
-import { router, store, axios, utils, message, svg, element, i18n, errorLog } from '@/plugins'
+import { router, store, axios, utils, message, svg, element, i18n, errorLog, directive } from '@/plugins'
 import '@/plugins/router/interceptor'
 import '@/plugins/pwa'
 
@@ -14,6 +14,7 @@ Vue.use(element)
 Vue.use(message) // 操作提示
 Vue.use(svg) // svg组件
 Vue.use(errorLog) // 错误日志
+Vue.use(directive)
 
 new Vue({
   router,

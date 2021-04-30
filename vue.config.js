@@ -27,7 +27,7 @@ const config = {
       warnings: false,
       errors: true
     },
-    clientLogLevel: 'warn' ,
+    // clientLogLevel: 'warn' ,
     progress: false,
     proxy: {
       // change xxx-api/login => /mock-api/v1/login

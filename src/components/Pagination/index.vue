@@ -58,7 +58,7 @@
 import { Vue, Component, Prop, PropSync } from 'vue-property-decorator'
 import { BaseNS } from '@/type'
 import { ESNext } from '@/plugins/utils'
-import { DataType } from '@/configs/const'
+import { ObjToStringReturns } from '@/configs/const'
 /**
  * @version 1.0
  * @name EXPagination
@@ -132,7 +132,7 @@ export default class EXPagination extends Vue {
 
   //   this.syncParams.pageNum = currentPage
   //   if (
-  //     ESNext.typeOfAny(this.syncParams, DataType.array) &&
+  //     ESNext.typeofAny(this.syncParams, ObjToStringReturns.array) &&
   //     this.syncParams.length === 0
   //   ) {
   //     return

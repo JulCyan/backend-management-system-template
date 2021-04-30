@@ -1,4 +1,4 @@
-import { ResourceType, BrowserType, ImplicitParseFalseExcludes, WeChatJsApiList as jsApiList, RegWeChat, PermissionArgs, DataType } from '@/configs/const'
+import { ResourceType, BrowserType, ImplicitParseFalseExcludes, WeChatJsApiList as jsApiList, RegWeChat, ObjToStringReturns } from '@/configs/const'
 import { BaseNS, IDirectiveBinding } from '@/type'
 import VueRouter, { RawLocation, RouteConfig } from 'vue-router/types'
 import { VueConstructor } from 'vue'
@@ -365,7 +365,7 @@ export class ESNext extends NumberOperation {
     return JSON.parse(JSON.stringify(resource))
   }
 
-  public static typeOfAny(resource: any, type: DataType): boolean {
+  public static typeofAny(resource: any, type: ObjToStringReturns): boolean {
     return Object.prototype.toString.call(resource) === type
   }
 
@@ -720,97 +720,6 @@ export class Utils extends ProjectSelf {
     //   message: message,
     //   duration: duration || 1500,
     // })
-  }
-}
-
-export class Directive {
-  public binding: { value: Array<number> | number; arg: string; modifiers: any }
-  constructor(binding: { value: Array<number> | number; arg: string; modifiers: any }) {
-    this.binding = binding
-  }
-
-  static constructBinding(value: any, arg = '', modifiers: any = {}, name = 'permission'): IDirectiveBinding {
-    return {
-      arg,
-      modifiers,
-      value,
-      name,
-      rawName: arg ? `v-${name}:${arg}` : `v-${name}`
-    }
-  }
-}
-
-export class PermissionDirective extends Directive {
-  public userType: number
-  public permissionArgs: any
-
-  constructor(binding: any, userType = 0) {
-    super(binding)
-    this.userType = userType
-    this.permissionArgs = PermissionArgs
-  }
-
-  static turnToBinaryPermissionSum(value: BaseNS): Array<number> {
-    // 转为二进制
-    const binary = parseInt(value as string, 10).toString(2).split('').reverse().join('')
-    let multiplier = 1
-    const permissionList = []
-    for (let i = 0; i < binary.length; i++) {
-      // 如果位数为 1 则代表有值, 8421 权限控制, 当前位置有值则有当前倍率的权限
-      (binary[i] === '1') && permissionList.push(multiplier)
-      multiplier *= 2
-    }
-    return permissionList
-  }
-
-  protected exact(): boolean {
-    return this.binding.value === this.userType
-  }
-
-  protected inverse(): boolean {
-    return this.binding.value !== this.userType
-  }
-
-  protected includes(): boolean {
-    return (this.binding.value as Array<number>).includes(this.userType)
-  }
-
-  protected excludes(): boolean {
-    return !(this.binding.value as Array<number>).includes(this.userType)
-  }
-
-  public result(userType: number = this.userType): boolean {
-    this.userType = userType
-    const {
-      exact,
-      inverse,
-      includes,
-      excludes
-    } = PermissionArgs
-    let result = true
-
-    switch (this.binding.arg) {
-      case exact:
-        result = this.exact()
-        break
-      case inverse:
-        result = this.inverse()
-        break
-      case includes:
-        result = this.includes()
-        break
-      case excludes:
-        result = this.excludes()
-        break
-      default:
-        if (ESNext.typeOfAny(this.userType, DataType.number)) {
-          result = this.exact()
-        } else if (ESNext.typeOfAny(this.userType, DataType.array)) {
-          result = this.includes()
-        }
-    }
-
-    return result
   }
 }
 

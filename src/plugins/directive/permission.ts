@@ -1,5 +1,5 @@
 // import store from '@/plugins/store'
-import { PermissionDirective } from '@/plugins/utils'
+import { PermissionDirective } from '@/plugins/utils/directive'
 import { UserType } from '@/configs/const'
 
 export const getRolesSum = (): number => {
@@ -19,8 +19,7 @@ export const haveRolesPermission = (binding: any): boolean => {
   const empIndex = controlList.findIndex(item => item === UserType.emp)
   empIndex !== -1 && controlList.splice(empIndex, 1)
   // 找到拥有权限的一项
-  // eslint-disable-next-line no-return-assign
-  controlList.find(item => showFlag = pd.result(item))
+  controlList.find(item => (showFlag = pd.handler(item)))
   return showFlag
 }
 

@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { Vue, Component, PropSync, Prop } from 'vue-property-decorator'
-import { DataType, SuccessBusinessStatus } from '@/configs/const'
+import { ObjToStringReturns, SuccessBusinessStatus } from '@/configs/const'
 import { ESNext } from '@/plugins/utils'
 @Component
 export default class EXSelect extends Vue {
@@ -50,7 +50,7 @@ export default class EXSelect extends Vue {
     this.generateAttributes()
     this.$axios(this.attributesProp.requestFn()).then((res) => {
       if (SuccessBusinessStatus.includes(res.code)) {
-        let options = ESNext.typeOfAny(res.data, DataType.array) ? res.data : res.data.list
+        let options = ESNext.typeofAny(res.data, ObjToStringReturns.array) ? res.data : res.data.list
         options = this.optionsProp.concat(options)
         if (this.optionFilter) {
           options = this.optionFilter(options)

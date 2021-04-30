@@ -1,4 +1,4 @@
-import { PermissionDirective } from './../../../../src/plugins/utils'
+import { PermissionDirective } from './../../../../src/plugins/utils/directive'
 describe('PermissionDirective method turnToBinaryPermissionSum', () => {
   const method = PermissionDirective.turnToBinaryPermissionSum
   const reduce = (arr) => {
