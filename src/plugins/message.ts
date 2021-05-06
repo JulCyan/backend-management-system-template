@@ -1,10 +1,10 @@
 
-import { ElNotificationOptions, Notification } from 'element-ui'
+import { Message } from 'element-ui'
+import { ElMessageOptions } from 'element-ui/types/message'
 
-export function message(args: ElNotificationOptions) {
-  Notification.closeAll()
-  Notification({
-    title: '提示',
+export function message(args: ElMessageOptions) {
+  Message.closeAll()
+  Message({
     duration: 2000,
     ...args
   })

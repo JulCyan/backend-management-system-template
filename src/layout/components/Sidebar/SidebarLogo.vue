@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import settings from '@/settings.json'
+import { SettingsModule } from '@/plugins/store/modules'
 
 @Component({
   name: 'SidebarLogo'
@@ -43,7 +43,7 @@ import settings from '@/settings.json'
 export default class extends Vue {
   @Prop({ required: true }) private collapse!: boolean
 
-  private title = settings.title
+  private title = SettingsModule.$settings.title
 }
 </script>
 

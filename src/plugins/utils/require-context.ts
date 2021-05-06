@@ -11,11 +11,11 @@
 
 exports.requireContext = function(context, excludes: Array<string> = ['.d.ts', 'index']) {
   const list = {}
-  // TODO: 过滤非必要加载文件
+  // 过滤非必要加载文件
   context.keys().filter((item) => {
     return !excludes.filter(fd => item.includes(fd)).length
   }).forEach(item => {
-    // TODO: 加载文件
+    // 加载文件
     const me = context(item)
     const data = me.default || me
     Object.assign(list, data)

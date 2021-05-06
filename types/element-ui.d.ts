@@ -54,6 +54,13 @@ declare module 'element-ui' {
         title?: string
     }
 
-    export const Notification: ElNotification
+    // 扩展 ElMessage
+    import { ElMessage as ELM } from 'element-ui/types/message'
+
+    export interface ELMessage extends ELM {
+        closeAll(): void
+    }
+
+    export const Message: ELMessage
 
 }

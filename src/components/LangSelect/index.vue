@@ -53,8 +53,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { AppModule } from '@/plugins/store/modules'
-import settings from '@/settings.json'
+import { AppModule, SettingsModule } from '@/plugins/store/modules'
 @Component({
   name: 'Login'
 })
@@ -67,7 +66,8 @@ export default class extends Vue {
     this.$i18n.locale = lang
     AppModule.SetLanguage(lang)
     document.documentElement.lang = lang
-    const title = this.$route.meta.title ? `${this.$t(`route.${this.$route.meta.title}`)} - ${settings.title}` : `${settings.title}`
+    const settingsTitle = SettingsModule.$settings.title
+    const title = this.$route.meta.title ? `${this.$t(`route.${this.$route.meta.title}`)} - ${settingsTitle}` : `${settingsTitle}`
     document.title = title
     this.$message({
       message: this.$t('components.changeLanguageTips').toString(),

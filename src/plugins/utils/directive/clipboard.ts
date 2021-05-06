@@ -3,7 +3,6 @@ import i18n from '@/plugins/lang'
 import { msg } from '@/plugins/message'
 import { BaseNS } from '@/type'
 import Clipboard from 'clipboard'
-import { VNode } from 'vue/types/umd'
 import { Directive } from '.'
 import { ESNext } from '..'
 
