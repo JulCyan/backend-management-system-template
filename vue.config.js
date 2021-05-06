@@ -136,7 +136,7 @@ const config = {
   }
 }
 
-const fitlerConfig = (config) => {
+const filterConfig = (config) => {
   if (!settings.enableProxy || !process.env.VUE_APP_BASE_API) {
     delete config.devServer.proxy
   }
@@ -146,4 +146,4 @@ const fitlerConfig = (config) => {
   return config
 }
 
-module.exports = fitlerConfig(config)
+module.exports = filterConfig(config)

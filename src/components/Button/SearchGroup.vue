@@ -52,10 +52,10 @@ import { EXButton } from '@/components'
 })
 export default class SearchGroup extends EXButton {
   @Prop({ type: Object })
-  protected readonly attributesForResetProp: any;
+  protected readonly attributesForResetProp: any
 
   @Prop({ type: Function, required: true })
-  protected readonly reset: Function;
+  protected readonly reset: Function
 
   protected attributesForReset: any = {
     type: 'primary',
@@ -64,7 +64,7 @@ export default class SearchGroup extends EXButton {
     icon: '',
     text: '重置',
     executeAfterReset: true
-  };
+  }
 
   protected resetInterceptor() {
     this.reset()
@@ -80,10 +80,7 @@ export default class SearchGroup extends EXButton {
   }
 
   protected generateAttributesForReset() {
-    this.attributesForReset = {
-      ...this.attributesForReset,
-      ...this.attributesForResetProp
-    }
+    this.attributesForReset = { ...this.attributesForReset, ...this.attributesForResetProp }
   }
 }
 </script>

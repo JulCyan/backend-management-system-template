@@ -217,8 +217,16 @@ export class ESNext extends NumberOperation {
     */
   public clearSuffix(str: string): string {
     let newStr = ''
-    if (str.split('').reverse().join('').indexOf('.') !== -1) {
-      newStr = str.split('').reverse().join('').split('.').pop().split('').reverse().join('')
+    if (str.split('').reverse()
+      .join('')
+      .indexOf('.') !== -1) {
+      newStr = str.split('').reverse()
+        .join('')
+        .split('.')
+        .pop()
+        .split('')
+        .reverse()
+        .join('')
     } else {
       newStr = str
     }
@@ -704,7 +712,8 @@ export class ProjectSelf extends DateOperation {
   }
 
   public exportExcel(response) {
-    const fileName = response.headers['content-disposition'].split(';').find(item => item.indexOf('filename') !== -1).split('filename=')[1]
+    const fileName = response.headers['content-disposition'].split(';').find(item => item.indexOf('filename') !== -1)
+      .split('filename=')[1]
     this.arrayBufferToExcel(response.data, fileName)
   }
 }

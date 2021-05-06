@@ -23,7 +23,10 @@ export class PermissionDirective extends Directive {
 
   static turnToBinaryPermissionSum(value: BaseNS): Array<number> {
     // 转为二进制
-    const binary = parseInt(value as string, 10).toString(2).split('').reverse().join('')
+    const binary = parseInt(value as string, 10).toString(2)
+      .split('')
+      .reverse()
+      .join('')
     let multiplier = 1
     const permissionList = []
     for (let i = 0; i < binary.length; i++) {

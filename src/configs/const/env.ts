@@ -7,7 +7,7 @@ export enum Mode {
 
 export enum CookieDomain {
   development = '',
-  production = '.main.com',
+  production = '',
   testing = '',
 }
 

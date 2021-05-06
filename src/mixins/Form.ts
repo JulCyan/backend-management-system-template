@@ -4,7 +4,13 @@ import { ElForm } from 'element-ui/types/form'
 import { Component, Mixins, Watch } from 'vue-property-decorator'
 import { TableComplex, EXButton, EXSelect, SearchGroup } from '@/components'
 import MixinBase from './Base'
-export type MessageBoxParams = { text: string; title: string; success?: Function; cancel?: Function; final?: Function }
+export interface MessageBoxParams {
+  text: string
+  title: string
+  success?: Function
+  cancel?: Function
+  final?: Function
+}
 @Component({
   components: { TableComplex, EXButton, EXSelect, SearchGroup }
 })
@@ -26,11 +32,13 @@ export default class Form extends Mixins(MixinBase) {
       type: 'warning'
     }).then(() => {
       success && success()
-    }).catch(() => {
-      cancel && cancel()
-    }).finally(() => {
-      final && final()
     })
+      .catch(() => {
+        cancel && cancel()
+      })
+      .finally(() => {
+        final && final()
+      })
   }
 
   public _$alert({ text, title, final }: MessageBoxParams) {
