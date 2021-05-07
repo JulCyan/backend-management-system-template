@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <div class="__cyan_tree_container">
+  <div class="ex-tree-container">
     <el-tree
       :data="data"
       :props="props"
@@ -34,10 +34,10 @@ export default class EXTree extends Vue {
   }
 
   protected created() {
-    this.init()
+    this.initProps()
   }
 
-  protected init() {
+  protected initProps() {
     this.propsRes = { ...this.propsRes, ...this.props }
   }
 
