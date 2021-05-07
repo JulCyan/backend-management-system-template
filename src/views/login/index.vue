@@ -10,7 +10,7 @@
     >
       <div class="title-container">
         <h3 class="title">
-          后台管理系统模板
+          {{ title }}
         </h3>
       </div>
 
@@ -101,7 +101,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { Route } from 'vue-router'
 import { Dictionary } from 'vue-router/types/router'
 import { Form as ElForm, Input } from 'element-ui'
-import { UserModule, PermissionModule } from '@/plugins/store/modules'
+import { UserModule, PermissionModule, SettingsModule } from '@/plugins/store/modules'
 import md5 from 'md5'
 
 @Component({
@@ -209,6 +209,10 @@ export default class extends Vue {
       (this.$refs.loginForm as ElForm).clearValidate('verifyCode')
     })
     return UserModule.verifyCodeImage
+  }
+
+  get title() {
+    return SettingsModule.title
   }
 }
 </script>

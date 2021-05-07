@@ -76,7 +76,7 @@
       class="h-left"
       @click="home"
     >
-      后台管理系统模板
+      {{ title }}
     </div>
     <div class="g-right">
       <div class="right-menu">
@@ -135,7 +135,7 @@
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
 import { MixinBase } from '@/mixins'
-import { UserModule } from '@/plugins/store/modules'
+import { SettingsModule, UserModule } from '@/plugins/store/modules'
 @Component
 export default class HeaderDefault extends Mixins(MixinBase) {
   private async logout() {
@@ -149,6 +149,10 @@ export default class HeaderDefault extends Mixins(MixinBase) {
 
   get username() {
     return UserModule.userInfo.accountName
+  }
+
+  get title() {
+    return SettingsModule.title
   }
 }
 </script>

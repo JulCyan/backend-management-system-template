@@ -14,14 +14,19 @@
 <template>
   <div class="index-container">
     <div class="content">
-      后台管理系统模板
+      {{ title }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { SettingsModule } from '@/plugins/store/modules'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class Index extends Vue {}
+export default class Index extends Vue {
+  get title() {
+    return SettingsModule.title
+  }
+}
 </script>
