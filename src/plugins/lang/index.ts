@@ -53,9 +53,5 @@ const i18n = new VueI18n({
 export default i18n
 
 export const getRouteTitle = (route) => {
-  const result =
-    i18n.t(`route.${route.meta.title}`) !== 'undefined'
-      ? i18n.t(`route.${route.meta.title}`).toString()
-      : undefined
-  return result
+  return route?.meta?.title && i18n.t(`route.${route.meta.title}`).toString() || undefined
 }

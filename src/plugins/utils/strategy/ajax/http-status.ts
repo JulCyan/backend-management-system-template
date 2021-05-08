@@ -2,6 +2,7 @@ import { ServerErrorHttpStatus, SuccessHttpStatus, UnauthorizedHttpStatus } from
 import { BaseNS, IBusinessData, ImplementAxiosResponse } from '@/type'
 import { UserModule } from '@/plugins/store/modules'
 import { BusinessStatusServicesFactory } from './business-status'
+import { msg } from '@/plugins/message'
 export const DefaultResponse: IBusinessData | any = {}
 
 // 抽象 ResponseService
@@ -27,6 +28,14 @@ export class SuccessHttpStatusService implements HttpResponseService {
 // Http 服务器错误 ResponseService
 export class ServerErrorHttpStatusService implements HttpResponseService {
   handler(response: ImplementAxiosResponse): ImplementAxiosResponse {
+    console.log('AxiosResponse', response)
+    let { status, statusText, config: { url } } = response
+    msg({
+      type: 'error',
+      message: `${status} ${statusText} Request Url: ${url}`,
+      duration: 3 * 1000,
+      closeAll: false
+    })
     response.data = DefaultResponse
     return response
   }
@@ -38,18 +47,22 @@ export class UnauthorizedHttpStatusService implements HttpResponseService {
     UserModule.ResetToken()
     response.data = DefaultResponse
     setTimeout(() => {
-      location.reload()
+      location.href = '/'
     })
     return response
   }
 }
+
+// Http 其他 ResponseService
+export class OthersHttpStatusService extends ServerErrorHttpStatusService { }
 
 // Http Status 策略分发
 export class HttpStatusServicesFactory {
   private static handlerMap = new Map([
     [SuccessHttpStatus, new SuccessHttpStatusService()],
     [UnauthorizedHttpStatus, new UnauthorizedHttpStatusService()],
-    [ServerErrorHttpStatus, new ServerErrorHttpStatusService()]
+    [ServerErrorHttpStatus, new ServerErrorHttpStatusService()],
+    [undefined, new OthersHttpStatusService()]
   ])
 
   static getStatusService(response: ImplementAxiosResponse): HttpResponseService {

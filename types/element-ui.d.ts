@@ -1,14 +1,14 @@
 
-
 declare module 'element-ui' {
     export class Scrollbar { }
-    import { MessageType } from 'element-ui/types/message'
+    // 扩展 ElMessage
+    import { MessageType, ElMessage as ELM, ElMessageOptions as ELMOpt } from 'element-ui/types/message'
     import { VNode } from 'vue'
     export * from 'element-ui/types/element-ui'
     import * as ElementUI from 'element-ui/types/element-ui'
     export default ElementUI
 
-    // 扩展 Notification 
+    // 扩展 Notification
     import { ElNotification as ELN, NotificationPosition } from 'element-ui/types/notification'
     export interface ElNotification extends ELN {
         closeAll(): void
@@ -55,8 +55,9 @@ declare module 'element-ui' {
     }
 
     // 扩展 ElMessage
-    import { ElMessage as ELM } from 'element-ui/types/message'
-
+    export interface ElMessageOptions extends ELMOpt {
+        closeAll?: boolean
+    }
     export interface ELMessage extends ELM {
         closeAll(): void
     }

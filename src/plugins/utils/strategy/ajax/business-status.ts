@@ -6,14 +6,14 @@ import { AjaxResponseService, DefaultResponse } from './http-status'
 
 // 抽象 Business ResponseService
 export abstract class BusinessResponseService implements AjaxResponseService {
-    abstract handler(response: ImplementAxiosResponse): void | IBusinessData
+  abstract handler(response: ImplementAxiosResponse): void | IBusinessData
 }
 
 // Business 成功状态码 ResponseService
 export class SuccessBusinessStatusService implements BusinessResponseService {
   handler(response: ImplementAxiosResponse): void | IBusinessData {
     const businessResponse: IBusinessData = response.data
-    const { code, state, message } = businessResponse
+    const { state, message } = businessResponse
     !state && msg({
       type: 'success',
       message
@@ -26,7 +26,7 @@ export class SuccessBusinessStatusService implements BusinessResponseService {
 export class ServerErrorBusinessStatusService implements BusinessResponseService {
   handler(response: ImplementAxiosResponse): void | IBusinessData {
     const businessResponse: IBusinessData = response.data
-    const { code, state, message } = businessResponse
+    const { state, message } = businessResponse
     !state && msg({
       type: 'error',
       message
@@ -47,7 +47,7 @@ export class UnauthorizedBusinessStatusService implements BusinessResponseServic
 export class NoPermissionBusinessStatusService implements BusinessResponseService {
   handler(response: ImplementAxiosResponse): void | IBusinessData {
     const businessResponse: IBusinessData = response.data
-    const { code, state, message } = businessResponse
+    const { state, message } = businessResponse
     !state && msg({
       type: 'error',
       message,
@@ -62,7 +62,7 @@ export class NoPermissionBusinessStatusService implements BusinessResponseServic
 export class OthersBusinessStatusService implements BusinessResponseService {
   handler(response: ImplementAxiosResponse): void | IBusinessData<any> {
     let businessResponse: IBusinessData = response.data
-    const { code, state, message } = businessResponse
+    const { state, message } = businessResponse
     !state && msg({
       type: 'warning',
       message
@@ -74,23 +74,23 @@ export class OthersBusinessStatusService implements BusinessResponseService {
 
 // Business Status 策略分发
 export class BusinessStatusServicesFactory {
-    private static handlerMap: Map<Array<BaseNS> | undefined, AjaxResponseService> = new Map([
-      [SuccessBusinessStatus, new SuccessBusinessStatusService()],
-      [ServerErrorBusinessStatus, new ServerErrorBusinessStatusService()],
-      [UnauthorizedBusinessStatus, new UnauthorizedBusinessStatusService()],
-      [NoPermissionBusinessStatus, new NoPermissionBusinessStatusService()],
-      [undefined, new OthersBusinessStatusService()]
-    ])
+  private static handlerMap: Map<Array<BaseNS> | undefined, AjaxResponseService> = new Map([
+    [SuccessBusinessStatus, new SuccessBusinessStatusService()],
+    [ServerErrorBusinessStatus, new ServerErrorBusinessStatusService()],
+    [UnauthorizedBusinessStatus, new UnauthorizedBusinessStatusService()],
+    [NoPermissionBusinessStatus, new NoPermissionBusinessStatusService()],
+    [undefined, new OthersBusinessStatusService()]
+  ])
 
-    static getStatusService(response: ImplementAxiosResponse): AjaxResponseService {
-      // 根据 http status 找到对应状态码组
-      const handlerMapKey = [
-        SuccessBusinessStatus,
-        ServerErrorBusinessStatus,
-        UnauthorizedBusinessStatus,
-        NoPermissionBusinessStatus
-      ].find(item => item.includes(response.status))
+  static getStatusService(response: ImplementAxiosResponse): AjaxResponseService {
+    // 根据 http status 找到对应状态码组
+    const handlerMapKey = [
+      SuccessBusinessStatus,
+      ServerErrorBusinessStatus,
+      UnauthorizedBusinessStatus,
+      NoPermissionBusinessStatus
+    ].find(item => item.includes(response.data.code))
 
-      return this.handlerMap.get(handlerMapKey)
-    }
+    return this.handlerMap.get(handlerMapKey)
+  }
 }

@@ -1,23 +1,15 @@
 <template>
-  <el-breadcrumb
-    class="app-breadcrumb"
-    separator="/"
-  >
+  <el-breadcrumb class="app-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
-      <el-breadcrumb-item
-        v-for="(item, index) in breadcrumbs"
-        :key="item.path"
-      >
+      <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="item.path">
         <span
           v-if="
             item.redirect === 'noredirect' || index === breadcrumbs.length - 1
           "
           class="no-redirect"
-        >{{ breadcrumbGetter(item) }}</span>
-        <a
-          v-else
-          @click.prevent="handleLink(item)"
-        >{{
+          >{{ breadcrumbGetter(item) }}</span
+        >
+        <a v-else @click.prevent="handleLink(item)">{{
           breadcrumbGetter(item)
         }}</a>
       </el-breadcrumb-item>
@@ -34,7 +26,7 @@ import i18n, { getRouteTitle } from '@/plugins/lang' // Internationalization
   name: 'Breadcrumb'
 })
 export default class extends Vue {
-  private breadcrumbs: RouteRecord[] = [];
+  private breadcrumbs: RouteRecord[] = []
 
   @Watch('$route')
   private onRouteChange(route: Route) {
@@ -93,9 +85,9 @@ export default class extends Vue {
   protected breadcrumbGetter(item) {
     let result = ''
     result =
-      i18n.t(`${item.meta.breadcrumb}`) != 'undefined'
-        ? i18n.t(`${item.meta.breadcrumb}`).toString()
-        : getRouteTitle(item)
+      (item?.meta?.breadcrumb &&
+        i18n.t(`${item.meta.breadcrumb}`).toString()) ||
+      getRouteTitle(item)
     return result
   }
 }
