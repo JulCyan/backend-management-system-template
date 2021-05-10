@@ -212,7 +212,7 @@ import {
 } from '@/api'
 import { MaxPageSize, ResourceStatus, resourceStatusList } from '@/configs/const'
 @Component
-export default class Account extends Mixins(MixinForm) {
+export default class DictData extends Mixins(MixinForm) {
   private data: any = {
     tableColumsConfig: [],
     tableList: [],

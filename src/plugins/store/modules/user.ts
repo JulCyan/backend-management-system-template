@@ -3,7 +3,7 @@ import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-dec
 import { instance } from '@/plugins/axios'
 import { getToken, setToken, removeToken } from '@/plugins/cookies'
 import store from '@/plugins/store'
-import { Utils } from '@/plugins/utils'
+import { utils } from '@/plugins/utils'
 
 export interface IUserState {
   token: string;
@@ -34,7 +34,6 @@ class User extends VuexModule implements IUserState {
 
   @Action
   public GetVerifyCode() {
-    const utils = new Utils()
     instance(
       getVerifyCode()
     ).then(response => {

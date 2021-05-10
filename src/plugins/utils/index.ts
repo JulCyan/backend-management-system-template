@@ -10,9 +10,19 @@ export interface IUtilsConfigs {
 }
 
 // 此处继承没有必要联系, 只是为了区分职责, ts 只能单类继承
-export class StorageOperation {
-  private readonly cookies: any
+export class UtilsBase {
+  protected cookies: any
+  protected router: VueRouter
+
+  public setConfigs(configs: IUtilsConfigs) {
+    this.cookies = configs && configs.cookies
+    this.router = configs && configs.router
+  }
+}
+
+export class StorageOperation extends UtilsBase {
   constructor(configs?: IUtilsConfigs) {
+    super()
     this.cookies = configs && configs.cookies
   }
 
@@ -631,8 +641,6 @@ export class DOMOperation extends ESNext {
 }
 
 export class RouterOperation extends DOMOperation {
-  private readonly router: VueRouter
-
   constructor(configs?: IUtilsConfigs) {
     super(configs)
     this.router = configs && configs.router
@@ -732,8 +740,11 @@ export class Utils extends ProjectSelf {
   }
 }
 
+export const utils = new Utils()
+
 export default {
   install(Vue: VueConstructor, configs: IUtilsConfigs) {
-    Vue.prototype.$utils = new Utils(configs)
+    Vue.prototype.$utils = utils
+    configs && utils.setConfigs(configs)
   }
 }
