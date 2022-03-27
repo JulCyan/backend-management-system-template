@@ -2,6 +2,7 @@
 
 ## Project setup
 ```
+node vesion 12.x
 yarn install
 ```
 
